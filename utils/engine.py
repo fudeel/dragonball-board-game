@@ -7,25 +7,27 @@ def interact_with_cell(board, player_name, pos_x, pos_y):
     return f"{player_name} is interacting with {cell}"
 
 
-round = 0
+tempo = 0
 team_purple = []
 team_orange = []
 
-current = 0
+current_team = 0
 current_orange = 0
+next_orange = 0
 
 
 def START(purple, orange):
-    global current
-    current = random.randint(0, 1)
-    if current == 0:
+    global current_team
+    current_team = random.randint(0, 1)
+    if current_team == 0:
         print("First move to Team Purple. Go Freezer!")
 
     else:
-        current = 1
+        current_team = 1
         global current_orange
         current_orange = 0
         print(f"First move to Team Orange. Go {orange[current_orange]._get_name()}!")
+
 
     global team_purple
     global team_orange
@@ -34,14 +36,23 @@ def START(purple, orange):
     team_orange = orange
 
     while check_teams():
+        print_current_team_and_player(current_team)
         action()
-        move(current)
+        move(current_team)
         for p in team_purple:
             print(f"Freezer: {p._get_hp()}")
             p.reduce_hp(1)
 
     print("Game ended")
 
+
+
+def print_current_team_and_player(current):
+    global current_orange
+    if current == 0:
+        print("-- Freezer's Turn --")
+    else:
+        print(f"-- {team_orange[current_orange]._get_name()}'s Turn --")
 
 def check_teams():
     for p in team_purple:
@@ -51,6 +62,7 @@ def check_teams():
 
 
 def move(current_team):
+    global tempo
     if current_team == 0:
         current_player = team_purple[0]
     elif current_team == 1:
@@ -65,7 +77,8 @@ def move(current_team):
         confirm = input(f"Confermi di spostarti su riga {pos_x} colonna {pos_y}? [y] / [n]").lower()
 
         if confirm == 'y':
-            swap(current_team)
+            switch(current_team)
+            tempo = tempo + 1
 
 
 def action():
@@ -84,12 +97,19 @@ def action():
             pass_turn()
 
 
-def swap(ct):
+def switch(ct):
+    print(">    switching")
     if ct == 0:
-        global current
-        current = 1
+        global current_team
+        global current_orange
+        global tempo
+        current_team = 1
+        if current_orange + 1 < len(team_orange) and tempo > 0:
+            current_orange = current_orange + 1
+        else:
+            current_orange = 0
     else:
-        current = 0
+        current_team = 0
 
 
 def pick():
