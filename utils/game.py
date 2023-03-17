@@ -1,26 +1,23 @@
 import json
 import random
-
-import set.board
 from models.character import Character
 from set import board
 from utils.selection import character_selection
-from utils.utils import toJSON
 
 game_state = {}
 
 teams = []
 
 
-def save_game(game_state, filename):
+def save_game(state, filename):
     with open(filename, 'w') as f:
-        json.dump(game_state, f)
+        json.dump(state, f)
 
 
 def load_game(filename):
     with open(filename, 'r') as f:
-        game_state = json.load(f)
-    return game_state
+        state = json.load(f)
+    return state
 
 
 def start():
