@@ -13,4 +13,6 @@ class Character:
     def __str__(self):
         return f"Character: Name={self.name} Defense={self.defense}, Attack={self.attack}, HP={self.hp}, Energy={self.energy}, Is carrying Dragonball={self.is_carrying_dragonball}, is making AoE={self.basic_aoe}x{self.basic_aoe}, he's in cell: (x: {self.pos_x} y: {self.pos_y})"
 
-
+    def interact_with_trap(self):
+        self.hp = self.hp - 1
+        return f"HP reduced by 1: {self.hp}"

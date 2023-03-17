@@ -33,8 +33,27 @@ for i in range(12):
             board[row][col] = "T"
             break
 
-goku = Character(name="Goku", basic_aoe=2, attack=4, energy=10, defense=4, hp=15, pos_x=20, pos_y=20)
-freezer = Character(name="Freezer", basic_aoe=4, attack=5, energy=10, defense=4, hp=15, pos_x=20, pos_y=20)
+goku = Character(name="Goku",
+                 basic_aoe=2,
+                 attack=4, energy=10,
+                 defense=4,
+                 hp=15,
+                 pos_x=20,
+                 pos_y=20,
+                 is_carrying_dragonball=False)
+
+freezer = Character(name="Freezer",
+                    basic_aoe=4,
+                    attack=5,
+                    energy=10,
+                    defense=4,
+                    hp=15,
+                    pos_x=20,
+                    pos_y=20,
+                    is_carrying_dragonball=False)
+
+
+goku.interact_with_trap()
 
 print(board)
 print(goku)
