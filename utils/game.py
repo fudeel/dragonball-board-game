@@ -20,7 +20,7 @@ def load_game(filename):
     return state
 
 
-def start():
+def init():
     print("Welcome to Namecc \n")
     num_of_players = 0
     while num_of_players < 2 or num_of_players > 5:
