@@ -14,7 +14,7 @@ for i in range(7):
             board[row][col] = "X"
             break
 
-# Put Pick Cards in map
+# Put cards in map
 for i in range(20):
     while True:
         row = random.randint(0, 29)
@@ -23,7 +23,7 @@ for i in range(20):
             board[row][col] = "C"
             break
 
-goku = Character(3, 4, 15, 2, True)
+goku = Character('Goku', 3, 4, 15, 2, False, 2)
 
 print(board)
 print(goku)
