@@ -16,3 +16,10 @@ class Character:
     def interact_with_trap(self):
         self.hp = self.hp - 1
         return f"HP reduced by 1: {self.hp}"
+
+    def restore_hp(self, qty):
+        self.hp = self.hp + qty
+        if self.hp > 15:
+            self.hp = 15
+
+

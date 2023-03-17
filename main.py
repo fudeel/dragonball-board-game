@@ -54,7 +54,7 @@ freezer = Character(name="Freezer",
 
 
 goku.interact_with_trap()
-
+goku.restore_hp(1)
 print(board)
 print(goku)
 print(freezer)
