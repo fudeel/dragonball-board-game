@@ -7,38 +7,39 @@ def interact_with_cell(board, player_name, pos_x, pos_y):
     return f"{player_name} is interacting with {cell}"
 
 
-def check_hp(team):
-    for member in team:
-        print(member._get_hp())
-        if member._get_hp() > 0:
-            return True
-    return False
-
-
-def check_teams(team_purple, team_orange):
-    if check_hp(team_purple) and check_hp(team_orange):
-        return True
-    return False
-
-
 round = 0
 start = 0
 
+team_purple = []
+team_orange = []
 
-def START(team_purple, team_orange):
-    print("A")
+
+def START(purple, orange):
     first = random.randint(0, 1)
     if first == 0:
         print("First move to Team Purple. Go Freezer!")
 
     else:
-        print(f"First move to Team Orange. Go {team_orange[0]._get_name}!")
+        print(f"First move to Team Orange. Go {orange[0]._get_name}!")
         global start
         start = 1
 
-    while check_teams(team_purple, team_orange):
-        team_purple[0].reduce_hp(1)
-        team_orange[0].reduce_hp(1)
-        team_orange[1].reduce_hp(1)
+    global team_purple
+    global team_orange
+
+    team_purple = purple
+    team_orange = orange
+
+    while check_teams():
+        for p in team_purple:
+            print(f"Freezer: {p._get_hp()}")
+            p.reduce_hp(1)
 
     print("Game ended")
+
+
+def check_teams():
+    for p in team_purple:
+        if p._get_hp() > 0:
+            return True
+    return False
