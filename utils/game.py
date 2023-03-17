@@ -6,6 +6,8 @@ from utils.selection import character_selection
 
 game_state = {}
 
+game_board = []
+
 teams = []
 
 
@@ -53,6 +55,7 @@ def init():
 
 
 def generate_game_board():
+    global game_board
     print("> Generating board... ")
     game_board = board.board
 

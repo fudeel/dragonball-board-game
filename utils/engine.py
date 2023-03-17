@@ -1,10 +1,21 @@
 import random
 
+from utils.game import game_board
 
-def interact_with_cell(board, player_name, pos_x, pos_y):
-    cell = board[pos_x][pos_y]
 
-    return f"{player_name} is interacting with {cell}"
+def interact_with_cell(player_name, pos_x, pos_y):
+    cell = game_board[pos_x][pos_y]
+
+    if cell == "T":
+        print(f"Ouch! It was a trap! {player_name} loses 1 HP")
+
+    elif cell == "X":
+        print(f"Yes! {player_name} found a Dragon Ball sphere! If you already found one,"
+              f"drop this in the same cell you drop the previous sphere otherwise choose a location with your team. ")
+    elif cell == "C":
+        print(f"{player_name} pick a card and use it wisely")
+    else:
+        print(f"{player_name} try somewhere else.")
 
 
 tempo = 0
@@ -14,20 +25,24 @@ team_orange = []
 current_team = 0
 current_orange = 0
 next_orange = 0
+current_player_obj = None
 
 
 def START(purple, orange):
     global current_team
+    global current_player_obj
+
     current_team = random.randint(0, 1)
     if current_team == 0:
         print("First move to Team Purple. Go Freezer!")
+        current_player_obj = orange[0]
 
     else:
         current_team = 1
         global current_orange
         current_orange = 0
         print(f"First move to Team Orange. Go {orange[current_orange]._get_name()}!")
-
+        current_player_obj = orange[0]
 
     global team_purple
     global team_orange
@@ -49,13 +64,13 @@ def START(purple, orange):
     print("Game ended")
 
 
-
 def print_current_team_and_player_name(current):
     global current_orange
     if current == 0:
         return "Freezer"
     else:
         return team_orange[current_orange]._get_name()
+
 
 def check_teams():
     for p in team_purple:
@@ -87,11 +102,11 @@ def move(current_team):
 def action():
     action = ""
 
-    while action != "pick" and action != "use card" and action != "pass":
-        action = input("Cosa vuoi fare? [pick] [use card] [pass]").lower()
+    while action != "interact" and action != "use card" and action != "pass":
+        action = input("Cosa vuoi fare? [interact] [use card] [pass]").lower()
 
-        if action == "pick":
-            pick()
+        if action == "interact":
+            interact()
 
         if action == "use card":
             use_card()
@@ -101,6 +116,7 @@ def action():
 
 
 def switch(ct):
+    global current_player_obj
     print(">    switching")
     if ct == 0:
         global current_team
@@ -109,14 +125,18 @@ def switch(ct):
         current_team = 1
         if current_orange + 1 < len(team_orange) and tempo > 0:
             current_orange = current_orange + 1
+            current_player_obj = team_orange[current_orange]
         else:
             current_orange = 0
+            current_player_obj = team_orange[current_orange]
     else:
         current_team = 0
+        current_player_obj = team_purple[0]
 
 
-def pick():
+def interact():
     print(f"{print_current_team_and_player_name(current_team)} picks in the cell")
+    print(f"Current player name: {current_team}")
     return
 
 
