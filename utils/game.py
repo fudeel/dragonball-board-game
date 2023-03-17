@@ -38,8 +38,7 @@ def start():
                         hp=15,
                         pos_x=31,
                         pos_y=31,
-                        is_carrying_dragonball=False,
-                        is_playing=True)
+                        carrying_spheres=0)
     team_purple = [freezer]
     teams.append(team_purple)
     team_orange = []

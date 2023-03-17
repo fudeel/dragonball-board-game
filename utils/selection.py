@@ -13,12 +13,11 @@ def character_selection(taken = []):
             name='Goku',
             pos_x=0,
             pos_y=len(taken),
-            is_playing=True,
             defense=4,
             energy=8,
             attack=4,
             basic_aoe=2,
-            is_carrying_dragonball=False,
+            carrying_spheres=0,
             hp=10
         )
 
@@ -29,12 +28,11 @@ def character_selection(taken = []):
             name='Piccolo',
             pos_x=0,
             pos_y=len(taken),
-            is_playing=True,
             defense=3,
             energy=10,
             attack=3,
             basic_aoe=2,
-            is_carrying_dragonball=False,
+            carrying_spheres=0,
             hp=10
         )
 
@@ -45,12 +43,11 @@ def character_selection(taken = []):
             name='Crilin',
             pos_x=0,
             pos_y=len(taken),
-            is_playing=True,
             defense=2,
             energy=10,
             attack=2,
             basic_aoe=1,
-            is_carrying_dragonball=False,
+            carrying_spheres=0,
             hp=10
         )
 
@@ -61,12 +58,11 @@ def character_selection(taken = []):
             name='Gohan',
             pos_x=0,
             pos_y=len(taken),
-            is_playing=True,
             defense=2,
             energy=15,
             attack=3,
             basic_aoe=1,
-            is_carrying_dragonball=False,
+            carrying_spheres=0,
             hp=10
         )
 
@@ -77,12 +73,11 @@ def character_selection(taken = []):
             name='Vegeta',
             pos_x=0,
             pos_y=len(taken),
-            is_playing=True,
             defense=3,
             energy=10,
             attack=5,
             basic_aoe=2,
-            is_carrying_dragonball=False,
+            carrying_spheres=0,
             hp=10
         )
 

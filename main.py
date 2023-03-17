@@ -1,5 +1,6 @@
 import os
 from utils.game import start, load_game, generate_game_board, teams
+from db import players
 
 game_state = {}
 
@@ -13,8 +14,9 @@ if os.path.exists('saved_game.json'):
             start()
             generate_game_board()
 
-            team_puple = teams[0]
-            team_orange = teams[1]
+            print(">    saving data on db... ")
+
+            players.save_players(teams, "test")
 
 
 
