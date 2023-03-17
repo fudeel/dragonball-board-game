@@ -1,8 +1,5 @@
-from models.character import Character
-import random
 import os
-from utils import engine
-from utils.game import start, load_game, generate_game_board, save_game
+from utils.game import start, load_game, generate_game_board, teams
 
 game_state = {}
 
@@ -15,6 +12,11 @@ if os.path.exists('saved_game.json'):
             print("Good! You want a new adventure!")
             start()
             generate_game_board()
+
+            team_puple = teams[0]
+            team_orange = teams[1]
+
+
 
         elif ans == "y":
             game_state = load_game('saved_game.json')

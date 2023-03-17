@@ -9,6 +9,8 @@ from utils.utils import toJSON
 
 game_state = {}
 
+teams = []
+
 
 def save_game(game_state, filename):
     with open(filename, 'w') as f:
@@ -42,6 +44,7 @@ def start():
                         is_carrying_dragonball=False,
                         is_playing=True)
     team_purple = [freezer]
+    teams.append(team_purple)
     team_orange = []
     print("Creating other players... ")
 
@@ -50,8 +53,7 @@ def start():
         team_orange.append(character_selection())
         remaining_players -= 1
 
-
-
+    teams.append(team_orange)
 
 
 def generate_game_board():
