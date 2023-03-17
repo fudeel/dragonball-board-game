@@ -36,7 +36,10 @@ def START(purple, orange):
     team_orange = orange
 
     while check_teams():
-        print_current_team_and_player(current_team)
+        for i in range(50):
+            print("||")
+
+        print(f"{print_current_team_and_player_name(current_team)}'s Turn!")
         action()
         move(current_team)
         for p in team_purple:
@@ -47,12 +50,12 @@ def START(purple, orange):
 
 
 
-def print_current_team_and_player(current):
+def print_current_team_and_player_name(current):
     global current_orange
     if current == 0:
-        print("-- Freezer's Turn --")
+        return "Freezer"
     else:
-        print(f"-- {team_orange[current_orange]._get_name()}'s Turn --")
+        return team_orange[current_orange]._get_name()
 
 def check_teams():
     for p in team_purple:
@@ -70,9 +73,9 @@ def move(current_team):
 
     confirm = ""
     while confirm != 'y':
-        print(f"{current_player._get_name()}, lancia il dado e inserisci la nuova posizione in cui ti sposti")
-        pos_x = int(input("Insert new X:    "))
-        pos_y = int(input("Insert new Y:    "))
+        print(f"{current_player._get_name()}, roll a dice and insert the new ROW and COL in which you move")
+        pos_x = int(input("Insert new ROW X:    "))
+        pos_y = int(input("Insert new COL Y:    "))
 
         confirm = input(f"Confermi di spostarti su riga {pos_x} colonna {pos_y}? [y] / [n]").lower()
 
@@ -113,20 +116,20 @@ def switch(ct):
 
 
 def pick():
-    print("Pick a card")
+    print(f"{print_current_team_and_player_name(current_team)} picks in the cell")
     return
 
 
 def pass_turn():
-    print("You passed")
+    print(f"{print_current_team_and_player_name(current_team)} doesn't want to risk anything. He passes")
     return
 
 
 def use_card():
-    print("Use a card")
+    print(f"{print_current_team_and_player_name(current_team)} is brave enough to use a card!")
     return
 
 
 def roll():
-    print("Roll dice")
+    print(f"{print_current_team_and_player_name(current_team)} rolls a dice")
     return
