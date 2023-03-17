@@ -1,7 +1,7 @@
 import random
 
 
-def roll_dice(n = 1):
+def roll_dice(n=1):
     if n < 2:
         return random.randint(1, 6)
     elif n == 2:
@@ -11,5 +11,3 @@ def roll_dice(n = 1):
         return a, b
     else:
         return "You can use only 2 set"
-
-
