@@ -23,7 +23,9 @@ for i in range(20):
             board[row][col] = "C"
             break
 
-goku = Character('Goku', 3, 4, 15, 2, False, 2)
+goku = Character('Goku', 3, 4, 15, 10, False, 2, 20, 20)
+freezer = Character('Freezer', 5, 5, 15, 10, False, 4, 20, 4)
 
 print(board)
 print(goku)
+print(freezer)
