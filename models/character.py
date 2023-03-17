@@ -12,15 +12,14 @@ class Character:
         self.is_playing = is_playing
 
     def __str__(self):
-        return f"Character: Name={self.name} Defense={self.defense}, Attack={self.attack}, HP={self.hp}, Energy={self.energy}, Is carrying Dragonball={self.is_carrying_dragonball}, is making AoE={self.basic_aoe}x{self.basic_aoe}, he's in cell: (x: {self.pos_x} y: {self.pos_y})"
+        return f"Character: Name={self.name} Defense={self.defense}, Attack={self.attack}, HP={self.hp}, Energy={self.energy}, Is carrying Dragonball={self.is_carrying_dragonball}, is making AoE={self.basic_aoe}x{self.basic_aoe}, he's in cell: (x: {self.pos_x} y: {self.pos_y}) "
 
-    def move_player(self, dice):
-        # Calculate the new position after moving 6 cells
-        new_pos_x = min(self.pos_x + dice, 31)  # make sure new row is within the board boundaries
-        new_pos_y = min(self.pos_y + dice, 31)  # make sure new column is within the board boundaries
-        
-        self.pos_x = new_pos_x
-        self.pos_y = new_pos_y
+    def move_player(self, new_pos_x, new_pos_y):
+        if new_pos_x in range(0, 31) and new_pos_y in range(0, 31):
+            self.pos_x = new_pos_x
+            self.pos_y = new_pos_y
+        else:
+            print(f"The movement you're applying to {self.name} is not valid. Please set a valid position")
 
     def interact_with_trap(self):
         self.hp = self.hp - 1
@@ -61,3 +60,4 @@ class Character:
 
     def drop_sphere(self):
         self.is_carrying_dragonball = False
+

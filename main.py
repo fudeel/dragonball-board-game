@@ -63,5 +63,7 @@ print(freezer)
 
 print("move freezer by 2")
 print(f"Freezer old position {freezer.pos_x}:{freezer.pos_y}")
-freezer.move_player(3)
+freezer.move_player(21, 32)
+
+print(f"New freezer's position {freezer.pos_x}:{freezer.pos_y}")
 
