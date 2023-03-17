@@ -1,69 +1,28 @@
 from models.character import Character
-from set import dices, board
 import random
+import os
+from utils import engine
+from utils.game import start, load_game, generate_game_board, save_game
 
-print(dices.roll_dice())
-board = board.board
+game_state = {}
 
-# Put balls in map
-for i in range(7):
-    while True:
-        row = random.randint(0, 31)
-        col = random.randint(0, 31)
-        if board[row][col] == 0:
-            board[row][col] = "X"
-            break
+if os.path.exists('saved_game.json'):
+    ans = None
+    while ans != "y" and ans != "n":
+        ans = (input("There is already a game saved. Do you want to load? y/N: ")).lower()
 
-# Put cards in map
-for i in range(20):
-    while True:
-        row = random.randint(0, 31)
-        col = random.randint(0, 31)
-        if board[row][col] == 0 and "X" not in board[row] and "X" not in [board[r][col] for r in range(32)]:
-            board[row][col] = "C"
-            break
+        if ans == "n":
+            print("Good! You want a new adventure!")
+            start()
+            generate_game_board()
 
-# Put traps in map
-for i in range(12):
-    while True:
-        row = random.randint(0, 31)
-        col = random.randint(0, 31)
-        if board[row][col] == 0 and "X" not in board[row] and "X" not in [board[r][col] for r in range(32)] \
-                and "C" not in board[row] and "C" not in [board[r][col] for r in range(32)]:
-            board[row][col] = "T"
-            break
+        elif ans == "y":
+            game_state = load_game('saved_game.json')
 
-goku = Character(name="Goku",
-                 basic_aoe=2,
-                 attack=4, energy=10,
-                 defense=4,
-                 hp=15,
-                 pos_x=20,
-                 pos_y=20,
-                 is_carrying_dragonball=False,
-                 is_playing=True)
-
-freezer = Character(name="Freezer",
-                    basic_aoe=4,
-                    attack=5,
-                    energy=10,
-                    defense=4,
-                    hp=15,
-                    pos_x=20,
-                    pos_y=20,
-                    is_carrying_dragonball=False,
-                    is_playing=True)
+            print(game_state)
 
 
-goku.interact_with_trap()
-goku.restore_hp(1)
-print(board)
-print(goku)
-print(freezer)
-
-print("move freezer by 2")
-print(f"Freezer old position {freezer.pos_x}:{freezer.pos_y}")
-freezer.move_player(21, 32)
-
-print(f"New freezer's position {freezer.pos_x}:{freezer.pos_y}")
-
+else:
+    # start a new game
+    print("No game saved. Starting new game")
+    start()
