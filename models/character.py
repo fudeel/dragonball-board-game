@@ -69,3 +69,24 @@ class Character:
 
     def drop_sphere(self):
         self._carrying_spheres = False
+
+    def _get_pos_x(self):
+        return self._pos_x
+
+    def _set_pos_x(self, x):
+        self._pos_x = x
+
+    def _get_pos_y(self):
+        return self._pos_y
+
+    def _set_pos_y(self, y):
+        self._pos_y = y
+
+    def _get_carrying_spheres(self):
+        return self._carrying_spheres
+
+    def _set_carrying_spheres(self, is_drop):
+        if is_drop:
+            self._carrying_spheres = 0
+        else:
+            self._carrying_spheres = 1

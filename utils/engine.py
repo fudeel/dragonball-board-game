@@ -1,21 +1,26 @@
 import random
 
-from utils.game import game_board
+from utils.game import generate_game_board
 
 
-def interact_with_cell(player_name, pos_x, pos_y):
-    cell = game_board[pos_x][pos_y]
+game_board = generate_game_board()
+
+
+def interact_with_cell(player_obj):
+    cell = game_board[player_obj._get_pos_x()][player_obj._get_pos_y()]
 
     if cell == "T":
-        print(f"Ouch! It was a trap! {player_name} loses 1 HP")
+        print(f"Ouch! It was a trap! {player_obj._get_name()} loses 1 HP")
+        player_obj._reduce_hp()
 
     elif cell == "X":
-        print(f"Yes! {player_name} found a Dragon Ball sphere! If you already found one,"
+        print(f"Yes! {player_obj._get_name()} found a Dragon Ball sphere! If you already found one,"
               f"drop this in the same cell you drop the previous sphere otherwise choose a location with your team. ")
+        player_obj._get_carrying_spheres(is_drop=False)
     elif cell == "C":
-        print(f"{player_name} pick a card and use it wisely")
+        print(f"{player_obj._get_name()} pick a card and use it wisely")
     else:
-        print(f"{player_name} try somewhere else.")
+        print(f"{player_obj._get_name()} try somewhere else.")
 
 
 tempo = 0
@@ -137,6 +142,11 @@ def switch(ct):
 def interact():
     print(f"{print_current_team_and_player_name(current_team)} picks in the cell")
     print(f"Current player name: {current_team}")
+
+    if current_team == 0:
+        interact_with_cell(team_purple[0])
+    else:
+        interact_with_cell(team_orange[current_orange])
     return
 
 

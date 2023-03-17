@@ -1,6 +1,4 @@
 import os
-import random
-
 from models.character import Character
 from utils.engine import START
 from utils.game import init, load_game, generate_game_board, teams
