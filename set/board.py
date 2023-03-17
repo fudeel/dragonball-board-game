@@ -1,0 +1,1 @@
+board = [[0 for j in range(30)] for i in range(30)]
