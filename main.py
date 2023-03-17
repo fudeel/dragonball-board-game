@@ -8,8 +8,8 @@ board = board.board
 # Put balls in map
 for i in range(7):
     while True:
-        row = random.randint(0, 29)
-        col = random.randint(0, 29)
+        row = random.randint(0, 31)
+        col = random.randint(0, 31)
         if board[row][col] == 0:
             board[row][col] = "X"
             break
@@ -17,19 +17,19 @@ for i in range(7):
 # Put cards in map
 for i in range(20):
     while True:
-        row = random.randint(0, 29)
-        col = random.randint(0, 29)
-        if board[row][col] == 0 and "X" not in board[row] and "X" not in [board[r][col] for r in range(30)]:
+        row = random.randint(0, 31)
+        col = random.randint(0, 31)
+        if board[row][col] == 0 and "X" not in board[row] and "X" not in [board[r][col] for r in range(32)]:
             board[row][col] = "C"
             break
 
 # Put traps in map
 for i in range(12):
     while True:
-        row = random.randint(0, 29)
-        col = random.randint(0, 29)
-        if board[row][col] == 0 and "X" not in board[row] and "X" not in [board[r][col] for r in range(30)] \
-                and "C" not in board[row] and "C" not in [board[r][col] for r in range(30)]:
+        row = random.randint(0, 31)
+        col = random.randint(0, 31)
+        if board[row][col] == 0 and "X" not in board[row] and "X" not in [board[r][col] for r in range(32)] \
+                and "C" not in board[row] and "C" not in [board[r][col] for r in range(32)]:
             board[row][col] = "T"
             break
 
@@ -40,7 +40,8 @@ goku = Character(name="Goku",
                  hp=15,
                  pos_x=20,
                  pos_y=20,
-                 is_carrying_dragonball=False)
+                 is_carrying_dragonball=False,
+                 is_playing=True)
 
 freezer = Character(name="Freezer",
                     basic_aoe=4,
@@ -50,7 +51,8 @@ freezer = Character(name="Freezer",
                     hp=15,
                     pos_x=20,
                     pos_y=20,
-                    is_carrying_dragonball=False)
+                    is_carrying_dragonball=False,
+                    is_playing=True)
 
 
 goku.interact_with_trap()
@@ -58,3 +60,8 @@ goku.restore_hp(1)
 print(board)
 print(goku)
 print(freezer)
+
+print("move freezer by 2")
+print(f"Freezer old position {freezer.pos_x}:{freezer.pos_y}")
+freezer.move_player(3)
+
