@@ -23,7 +23,6 @@ for i in range(20):
             board[row][col] = "C"
             break
 
-
 # Put traps in map
 for i in range(12):
     while True:
@@ -34,8 +33,8 @@ for i in range(12):
             board[row][col] = "T"
             break
 
-goku = Character('Goku', 3, 4, 15, 10, False, 2, 20, 20)
-freezer = Character('Freezer', 5, 5, 15, 10, False, 4, 20, 4)
+goku = Character(name="Goku", basic_aoe=2, attack=4, energy=10, defense=4, hp=15, pos_x=20, pos_y=20)
+freezer = Character(name="Freezer", basic_aoe=4, attack=5, energy=10, defense=4, hp=15, pos_x=20, pos_y=20)
 
 print(board)
 print(goku)
