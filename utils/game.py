@@ -2,7 +2,10 @@ import json
 import random
 
 import set.board
+from models.character import Character
 from set import board
+from utils.selection import character_selection
+from utils.utils import toJSON
 
 game_state = {}
 
@@ -25,6 +28,30 @@ def start():
         num_of_players = int(input("Enter the number of players [min 2, max 5]: "))
 
     print(f"Preparing game for {num_of_players} players...")
+
+    # team creation
+    print("Creating freezer... ")
+    freezer = Character(name="Freezer",
+                        basic_aoe=2,
+                        attack=5,
+                        energy=10,
+                        defense=4,
+                        hp=15,
+                        pos_x=31,
+                        pos_y=31,
+                        is_carrying_dragonball=False,
+                        is_playing=True)
+    team_purple = [freezer]
+    team_orange = []
+    print("Creating other players... ")
+
+    remaining_players = num_of_players - 1
+    while remaining_players > 0:
+        team_orange.append(character_selection())
+        remaining_players -= 1
+
+
+
 
 
 def generate_game_board():
@@ -65,3 +92,7 @@ def generate_game_board():
 
     game_state['board'] = game_board
     save_game(game_state, 'saved_game.json')
+
+
+def continue_game(board, players):
+    return
