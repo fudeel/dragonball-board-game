@@ -24,7 +24,7 @@ for i in range(20):
             break
 
 
-# Put cards in map
+# Put traps in map
 for i in range(12):
     while True:
         row = random.randint(0, 29)
