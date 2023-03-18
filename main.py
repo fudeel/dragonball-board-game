@@ -1,11 +1,9 @@
-import os
 from models.character import Character
-from utils.engine import START, CHOICE, END_TURN, MOVE
-from utils.game import init, load_game, generate_game_board, teams
-from db import players
+from utils.engine import START, CHOICE, END_TURN, MOVE, ATTACK
+from utils.game import generate_game_board, teams
 
 freezer = Character(name="Freezer",
-                    basic_aoe=2,
+                    basic_aoe=3,
                     attack=5,
                     energy=10,
                     defense=4,
@@ -109,6 +107,13 @@ def play(ct, cp):
             if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "C":
                 input(f"{teams[ct][cp]._name} picks a card")
                 choice = 4
+
+
+            if choice == 2:
+                x, y = ATTACK(teams[ct][cp])
+
+
+
 
             if choice == 4:
                 END_TURN()

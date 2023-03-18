@@ -39,6 +39,38 @@ def MOVE():
     return [x, y]
 
 
+def ATTACK(attacker=None):
+    x = -1
+    y = -1
+
+    while x < 0 or x > 15 or y < 0 or y > 15:
+        x = int(input("Enter the row to attack:   "))
+        y = int(input("Enter the column to attack:    "))
+
+    xs = []
+    ys = []
+
+    print(f"attacker has {attacker._basic_aoe} AOE.")
+
+    if x * attacker._basic_aoe <= 15:
+        xs.append(x)
+        xs.append((x + (1 * attacker._basic_aoe)) - 1)
+    else:
+        xs.append(x)
+        xs.append((x - (1 * attacker._basic_aoe)) + 1)
+
+    if y * attacker._basic_aoe <= 15:
+        ys.append(y)
+        ys.append((y + (1 * attacker._basic_aoe)) - 1)
+    else:
+        ys.append(y)
+        ys.append((y - (1 * attacker._basic_aoe)) + 1)
+
+    print(f"attacking {xs} {ys}")
+
+    return [xs, ys]
+
+
 def END_TURN():
     print(f"Turn completed. Press ENTER to continue. . . ")
     input()
