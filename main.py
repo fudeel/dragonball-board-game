@@ -131,12 +131,11 @@ def play(ct, cp):
                     for j in columns_cells_to_attack:
                         print(curr_board[i][j])
 
+                        if curr_board[i][j] == "T":
+                            print("Destroyed a Trap!")
+                            curr_board[i][j] = 0
+
                 print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-
-
-
-                for y in sorted_ys:
-                    print("y: ", y)
 
             if choice == 4:
                 END_TURN()
