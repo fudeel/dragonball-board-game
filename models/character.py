@@ -90,3 +90,16 @@ class Character:
             self._carrying_spheres = 0
         else:
             self._carrying_spheres = 1
+
+
+    def _get_defense(self):
+        return self._defense
+
+    def _set_defense(self, val):
+        self._defense = val
+
+    def _get_attack(self):
+        return self._attack
+
+    def _set_attack(self, val):
+        self._attack = val

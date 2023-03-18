@@ -126,7 +126,6 @@ def play(ct, cp):
                     columns_cells_to_attack.append(i)
 
                 # attack
-                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
                 for i in row_cells_to_attack:
                     for j in columns_cells_to_attack:
                         print(curr_board[i][j])
@@ -135,8 +134,17 @@ def play(ct, cp):
                             print("Destroyed a Trap!")
                             curr_board[i][j] = 0
 
-                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+                        if isinstance(curr_board[i][j], Character):
 
+                            enemy_def = curr_board[i][j]._get_defense()
+                            player_att = teams[ct][cp]._get_attack()
+
+                            damage = player_att - enemy_def
+
+                            if damage <= 0:
+                                damage = 1
+
+                            curr_board[i][j].reduce_hp(damage)
             if choice == 4:
                 END_TURN()
 
