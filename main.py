@@ -88,11 +88,8 @@ def play(ct, cp):
         teams[ct][cp]._set_pos_x(x)
         teams[ct][cp]._set_pos_y(y)
 
-        print(">    new player's obj: ", teams[ct][cp].__dict__)
+        print(">    updating map...")
         curr_board[x][y] = teams[ct][cp]
-
-        print(">    updated map: ", curr_board)
-
 
         choice = 0
         while choice != 1 or choice != 2 or choice != 3 or choice != 4:
