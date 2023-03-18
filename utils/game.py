@@ -56,36 +56,37 @@ def generate_game_board():
     game_board = board.board
 
     # Put balls in map
-    for i in range(7):
+    for i in range(5):
         while True:
-            row = random.randint(0, 31)
-            col = random.randint(0, 31)
+            row = random.randint(0, 15)
+            col = random.randint(0, 15)
             if game_board[row][col] == 0:
                 game_board[row][col] = "X"
                 break
 
     # Put cards in map
-    for i in range(20):
+    for i in range(10):
         while True:
-            row = random.randint(0, 31)
-            col = random.randint(0, 31)
+            row = random.randint(0, 15)
+            col = random.randint(0, 15)
             if game_board[row][col] == 0 and "X" not in game_board[row] \
-                    and "X" not in [game_board[r][col] for r in range(32)]:
+                    and "X" not in [game_board[r][col] for r in range(16)]:
                 game_board[row][col] = "C"
                 break
 
     # Put traps in map
-    for i in range(12):
+    for i in range(10):
         while True:
-            row = random.randint(0, 31)
-            col = random.randint(0, 31)
+            row = random.randint(0, 15)
+            col = random.randint(0, 15)
             if game_board[row][col] == 0 and "X" not in game_board[row] \
-                    and "X" not in [game_board[r][col] for r in range(32)] \
-                    and "C" not in game_board[row] and "C" not in [game_board[r][col] for r in range(32)]:
+                    and "X" not in [game_board[r][col] for r in range(16)] \
+                    and "C" not in game_board[row] and "C" not in [game_board[r][col] for r in range(16)]:
                 game_board[row][col] = "T"
                 break
 
-    print(game_board)
+
+
 
     game_state['board'] = game_board
     save_game(game_state, 'saved_game.json')

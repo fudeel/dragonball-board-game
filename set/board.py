@@ -1,1 +1,1 @@
-board = [[0 for j in range(32)] for i in range(32)]
+board = [[0 for j in range(16)] for i in range(16)]
