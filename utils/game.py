@@ -85,11 +85,7 @@ def generate_game_board():
                 game_board[row][col] = "T"
                 break
 
-
-
-
     game_state['board'] = game_board
     save_game(game_state, 'saved_game.json')
-
 
     return game_board

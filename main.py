@@ -59,33 +59,43 @@ else:
     print(f"First team is Team Orange! ")
 
 
+def play(ct, cp):
+    print(teams[ct][cp].__dict__)
+
+    input(f"{teams[ct][cp]._name} roll a Dice")
+
+    choice = int(input(f"What do you want to do?: \n [1] Analyze current cell \n "
+                       f"[2] Attack a cell \n [3] Use a card \n [4] Pass"))
+
+    if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) is None:
+        choice = 4
+
+    if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "T":
+        print(f"There was a trap. {teams[ct][cp]._name} loses 1 HP")
+        teams[ct][cp].reduce_hp(1)
+        print(f"Updated {teams[ct][cp]._name}'s HP: {teams[ct][cp]._get_hp()}")
+        choice = 4
+
+    if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "C":
+        input(f"{teams[ct][cp]._name} picks a card")
+        choice = 4
+
+    if choice == 4:
+        END_TURN()
+
+
 def game():
     if curr_team == 0:
-        print(teams[curr_team][pi].__dict__)
+        ct = 0
+        cp = 0
 
-        input(f"{teams[curr_team][pi]._name} roll a Dice")
-
-        choice = int(input(f"What do you want to do?: \n [1] Analyze current cell \n "
-                           f"[2] Attack a cell \n [3] Use a card \n [4] Pass"))
-
-        if choice == 1 and CHOICE(curr_board, choice, teams[curr_team][pi]) is None:
-            choice = 4
-
-        if choice == 1 and CHOICE(curr_board, choice, teams[curr_team][pi]) == "T":
-            print(f"There was a trap. {teams[curr_team][pi]._name} loses 1 HP")
-            teams[curr_team][pi].reduce_hp(1)
-            print(f"Updated {teams[curr_team][pi]._name}'s HP: {teams[curr_team][pi]._get_hp()}")
-            choice = 4
-
-        if choice == 1 and CHOICE(curr_board, choice, teams[curr_team][pi]) == "C":
-            input(f"{teams[curr_team][pi]._name} picks a card")
-            choice = 4
-
-        if choice == 4:
-            END_TURN()
+        play(ct, cp)
 
     else:
-        print(teams[curr_team][oi].__dict__)
+        ct = 1
+        cp = 0
+
+        play(ct, cp)
 
 
 game()
