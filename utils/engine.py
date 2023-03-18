@@ -28,6 +28,17 @@ def CHOICE(curr_board, choice, character):
         return analyze_current_cell(curr_board, character._get_pos_x(), character._get_pos_y())
 
 
+def MOVE():
+    x = -1
+    y = -1
+
+    while x < 0 or x > 15 or y < 0 or y > 15:
+        x = int(input("Enter the row:   "))
+        y = int(input("Enter the column:    "))
+
+    return [x, y]
+
+
 def END_TURN():
     print(f"Turn completed. Press ENTER to continue. . . ")
     input()

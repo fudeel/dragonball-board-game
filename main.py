@@ -1,6 +1,6 @@
 import os
 from models.character import Character
-from utils.engine import START, CHOICE, END_TURN
+from utils.engine import START, CHOICE, END_TURN, MOVE
 from utils.game import init, load_game, generate_game_board, teams
 from db import players
 
@@ -73,7 +73,6 @@ def play(ct, cp):
             cp = (pp + 1) % len(team_orange)
 
             if team_orange[cp]:
-                print("next player ", team_orange[cp])
                 pp += 1
             else:
                 cp = 0
@@ -81,7 +80,16 @@ def play(ct, cp):
 
         print(teams[ct][cp].__dict__)
 
-        input(f"{teams[ct][cp]._name} roll a Dice")
+        input(f"{teams[ct][cp]._name} roll a Dice and move around the map to find the Dragon Balls")
+
+        x, y = MOVE()
+
+        print(">    updating player to new position...")
+        teams[ct][cp]._set_pos_x(x)
+        teams[ct][cp]._set_pos_y(y)
+
+        print(">    new player's obj: ", teams[ct][cp].__dict__)
+
 
         choice = 0
         while choice != 1 or choice != 2 or choice != 3 or choice != 4:
