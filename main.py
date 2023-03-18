@@ -89,6 +89,9 @@ def play(ct, cp):
         teams[ct][cp]._set_pos_y(y)
 
         print(">    new player's obj: ", teams[ct][cp].__dict__)
+        curr_board[x][y] = teams[ct][cp]
+
+        print(">    updated map: ", curr_board)
 
 
         choice = 0
