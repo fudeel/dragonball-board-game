@@ -47,6 +47,7 @@ curr_team = START()
 
 pi = 0  # purple index
 oi = 0  # orange index
+pp = -1  # previous player in orange
 
 curr_board = generate_game_board()
 
@@ -60,28 +61,57 @@ else:
 
 
 def play(ct, cp):
-    print(teams[ct][cp].__dict__)
+    global pp
+    while True:
 
-    input(f"{teams[ct][cp]._name} roll a Dice")
+        print(f"current team: {ct}, current player: {cp}, current previous player: {pp}")
 
-    choice = int(input(f"What do you want to do?: \n [1] Analyze current cell \n "
-                       f"[2] Attack a cell \n [3] Use a card \n [4] Pass"))
+        if ct == 1 and pp == -1:
+            pp = cp
 
-    if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) is None:
-        choice = 4
+        elif ct == 1 and pp > -1:
+            cp = (pp + 1) % len(team_orange)
 
-    if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "T":
-        print(f"There was a trap. {teams[ct][cp]._name} loses 1 HP")
-        teams[ct][cp].reduce_hp(1)
-        print(f"Updated {teams[ct][cp]._name}'s HP: {teams[ct][cp]._get_hp()}")
-        choice = 4
+            if team_orange[cp]:
+                print("next player ", team_orange[cp])
+                pp += 1
+            else:
+                cp = 0
+                pp = -1
 
-    if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "C":
-        input(f"{teams[ct][cp]._name} picks a card")
-        choice = 4
+        print(teams[ct][cp].__dict__)
 
-    if choice == 4:
-        END_TURN()
+        input(f"{teams[ct][cp]._name} roll a Dice")
+
+        choice = 0
+        while choice != 1 or choice != 2 or choice != 3 or choice != 4:
+
+            choice = int(input(f"What do you want to do?: \n [1] Analyze current cell \n "
+                               f"[2] Attack a cell \n [3] Use a card \n [4] Pass"))
+
+            if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) is None:
+                choice = 4
+
+            if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "T":
+                print(f"There was a trap. {teams[ct][cp]._name} loses 1 HP")
+                teams[ct][cp].reduce_hp(1)
+                print(f"Updated {teams[ct][cp]._name}'s HP: {teams[ct][cp]._get_hp()}")
+                choice = 4
+
+            if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "C":
+                input(f"{teams[ct][cp]._name} picks a card")
+                choice = 4
+
+            if choice == 4:
+                END_TURN()
+
+            if ct == 0:
+                ct = 1
+                break
+            else:
+                ct = 0
+                cp = 0
+                break
 
 
 def game():

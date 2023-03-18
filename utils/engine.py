@@ -2,7 +2,6 @@ import random
 
 
 def analyze_current_cell(curr_board, x, y):
-    print(curr_board)
     print(f"analyzing: {x}, {y}")
     print(curr_board[x][y])
 
@@ -29,5 +28,6 @@ def CHOICE(curr_board, choice, character):
 
 
 def END_TURN():
-    print(f"Turn completed. Moving to next player. ")
+    print(f"Turn completed. Press ENTER to continue. . . ")
+    input()
     print(f"=============================================")
