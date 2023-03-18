@@ -125,8 +125,13 @@ def play(ct, cp):
                     # Append each number to `array_2`
                     columns_cells_to_attack.append(i)
 
+                # attack
+                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+                for i in row_cells_to_attack:
+                    for j in columns_cells_to_attack:
+                        print(curr_board[i][j])
 
-
+                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 
 
 
