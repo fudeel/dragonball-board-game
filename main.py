@@ -108,12 +108,30 @@ def play(ct, cp):
                 input(f"{teams[ct][cp]._name} picks a card")
                 choice = 4
 
-
             if choice == 2:
-                x, y = ATTACK(teams[ct][cp])
+                xs, ys = ATTACK(teams[ct][cp])
+                sorted_xs = sorted(xs)
+                sorted_ys = sorted(ys)
+
+                row_cells_to_attack = []
+                columns_cells_to_attack = []
+
+                # Iterate through the range of numbers between the first and second elements of `array`
+                for i in range(sorted_xs[0], sorted_xs[1] + 1):
+                    # Append each number to `array_2`
+                    row_cells_to_attack.append(i)
+
+                for i in range(sorted_ys[0], sorted_ys[1] + 1):
+                    # Append each number to `array_2`
+                    columns_cells_to_attack.append(i)
 
 
 
+
+
+
+                for y in sorted_ys:
+                    print("y: ", y)
 
             if choice == 4:
                 END_TURN()
