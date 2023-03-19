@@ -1,6 +1,8 @@
 from models.character import Character
+from models.colors import bcolors
 from utils.engine import START, CHOICE, END_TURN, MOVE, ATTACK
 from utils.game import generate_game_board, teams
+from utils.logprinter import print_message
 
 freezer = Character(name="Freezer",
                     basic_aoe=3,
@@ -24,20 +26,8 @@ goku = Character(
     hp=10
 )
 
-crilin = Character(
-    name='Crilin',
-    pos_x=1,
-    pos_y=0,
-    defense=2,
-    energy=10,
-    attack=2,
-    basic_aoe=1,
-    carrying_spheres=0,
-    hp=10
-)
-
 team_purple = [freezer]
-team_orange = [goku, crilin]
+team_orange = [goku]
 
 teams = [team_purple, team_orange]
 
@@ -46,6 +36,8 @@ curr_team = START()
 pi = 0  # purple index
 oi = 0  # orange index
 pp = -1  # previous player in orange
+
+game_round = 0  # init game round
 
 curr_board = generate_game_board()
 
@@ -60,9 +52,11 @@ else:
 
 def play(ct, cp):
     global pp
+    global game_round
     while True:
 
-        print(f"current team: {ct}, current player: {cp}, current previous player: {pp}")
+        print(f"====| GAME ROUND {game_round} |====")
+        print_message(ct=ct)
 
         if ct == 1 and pp == -1:
             pp = cp
@@ -155,6 +149,8 @@ def play(ct, cp):
                 ct = 0
                 cp = 0
                 break
+
+        game_round += 1
 
 
 def game():
