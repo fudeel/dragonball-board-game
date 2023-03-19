@@ -25,8 +25,20 @@ goku = Character(
     hp=2
 )
 
+vegeta = Character(
+    name='Vegeta',
+    pos_x=0,
+    pos_y=1,
+    defense=4,
+    energy=8,
+    attack=4,
+    basic_aoe=2,
+    carrying_spheres=0,
+    hp=2
+)
+
 team_purple = [freezer]
-team_orange = [goku]
+team_orange = [goku, vegeta]
 
 teams = [team_purple, team_orange]
 
@@ -39,14 +51,6 @@ pp = -1  # previous player in orange
 game_round = 0  # init game round
 
 curr_board = generate_game_board()
-
-print(curr_team)
-if curr_team == 0:
-
-    print(f"First team is Team Purple! ")
-
-else:
-    print(f"First team is Team Orange! ")
 
 
 def play(ct, cp):
@@ -70,11 +74,21 @@ def play(ct, cp):
                 pp = -1
 
         print_character(teams[ct][cp])
-        input(f"{teams[ct][cp]._name} roll a Dice and move around the map to find the Dragon Balls")
+        print(f"{teams[ct][cp]._name} roll a Dice and move around the map to find the Dragon Balls")
 
-        x, y = MOVE()
+        is_move_valid = False
+
+        while not is_move_valid:
+            x, y = MOVE()
+
+            if isinstance(curr_board[x][y], Character):
+                is_move_valid = False
+                print("There's already another player in this position")
+            else:
+                is_move_valid = True
 
         print(">    updating player to new position...")
+
         teams[ct][cp]._set_pos_x(x)
         teams[ct][cp]._set_pos_y(y)
 

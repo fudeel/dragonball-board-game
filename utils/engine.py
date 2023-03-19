@@ -19,8 +19,6 @@ def analyze_current_cell(curr_board, x, y):
 
 
 def has_hp(team_purple, team_orange):
-    print(team_purple)
-    print(team_orange)
     # Check if arr1 has an element with hp > 0
     has_hp_arr1 = any(element._get_hp() > 0 for element in team_purple)
     if not has_hp_arr1:
