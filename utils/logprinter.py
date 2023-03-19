@@ -1,5 +1,6 @@
 from models.colors import bcolors
 from colorama import init, Fore, Back, Style
+from prettytable import PrettyTable
 
 init()
 
@@ -26,3 +27,11 @@ def print_message(*args, **kwargs):
     else:
         print(f"Current team: {bcolors.WARNING} ORANGE {Fore.RESET}")
 
+
+def print_character(character):
+    t = PrettyTable()
+    t.field_names = ["Name", "HP", "Attack", "Defense", "AOE", "X", "Y"]
+    t.add_row([character._name, character._hp, character._attack, character._defense, character._basic_aoe, character._pos_x, character._pos_y])
+
+
+    print(t)

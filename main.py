@@ -2,7 +2,7 @@ from models.character import Character
 from models.colors import bcolors
 from utils.engine import START, CHOICE, END_TURN, MOVE, ATTACK
 from utils.game import generate_game_board, teams
-from utils.logprinter import print_message
+from utils.logprinter import print_message, print_character
 
 freezer = Character(name="Freezer",
                     basic_aoe=3,
@@ -70,8 +70,7 @@ def play(ct, cp):
                 cp = 0
                 pp = -1
 
-        print(teams[ct][cp].__dict__)
-
+        print_character(teams[ct][cp])
         input(f"{teams[ct][cp]._name} roll a Dice and move around the map to find the Dragon Balls")
 
         x, y = MOVE()
