@@ -24,13 +24,13 @@ def has_hp(team_purple, team_orange):
     # Check if arr1 has an element with hp > 0
     has_hp_arr1 = any(element._get_hp() > 0 for element in team_purple)
     if not has_hp_arr1:
-        print_message(ct=1, end=True)
+        print_message(ct=0, end=True)
         return False
 
     # Check if arr2 has an element with hp > 0
     has_hp_arr2 = any(element._get_hp() > 0 for element in team_orange)
     if not has_hp_arr2:
-        print_message(ct=0, end=True)
+        print_message(ct=1, end=True)
         return False
 
     # Return True if both arrays have an element with hp > 0

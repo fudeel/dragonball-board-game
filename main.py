@@ -9,7 +9,7 @@ freezer = Character(name="Freezer",
                     attack=5,
                     energy=10,
                     defense=4,
-                    hp=15,
+                    hp=2,
                     pos_x=15,
                     pos_y=15,
                     carrying_spheres=0)
@@ -23,7 +23,7 @@ goku = Character(
     attack=4,
     basic_aoe=2,
     carrying_spheres=0,
-    hp=10
+    hp=2
 )
 
 team_purple = [freezer]
@@ -53,7 +53,7 @@ else:
 def play(ct, cp):
     global pp
     global game_round
-    while True:
+    while has_hp(teams[0], teams[1]):
 
         print(f"====| GAME ROUND {game_round} |====")
         print_message(ct=ct)
@@ -149,7 +149,6 @@ def play(ct, cp):
                 cp = 0
                 break
 
-        has_hp(teams[0], teams[1])
         game_round += 1
 
 
@@ -168,3 +167,5 @@ def game():
 
 
 game()
+
+print("GAME ENDED.")

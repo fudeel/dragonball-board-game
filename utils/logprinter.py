@@ -31,7 +31,13 @@ def print_message(*args, **kwargs):
         print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
         print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
         print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
+        print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
+        print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
+        print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
     else:
+        print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
+        print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
+        print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
         print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
         print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
         print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
