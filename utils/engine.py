@@ -5,7 +5,6 @@ from utils.logprinter import print_message
 
 def analyze_current_cell(curr_board, x, y):
     print(f"analyzing: {x}, {y}")
-    print(curr_board[x][y])
 
     if curr_board[x][y] == 0:
         return None
@@ -14,7 +13,6 @@ def analyze_current_cell(curr_board, x, y):
         return "T"
     else:
         print(f"Pick a card")
-        curr_board[x][y] = 0
         return "C"
 
 

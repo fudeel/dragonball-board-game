@@ -2,6 +2,8 @@ from models.character import Character
 from utils.engine import START, CHOICE, END_TURN, MOVE, ATTACK, has_hp
 from utils.game import generate_game_board, teams
 from utils.logprinter import print_message, print_character
+import copy
+
 
 freezer = Character(name="Freezer",
                     basic_aoe=3,
@@ -51,12 +53,16 @@ pp = -1  # previous player in orange
 game_round = 0  # init game round
 
 curr_board = generate_game_board()
+curr_board_without_players = copy.deepcopy(curr_board)
 
 
 def play(ct, cp):
     global pp
     global game_round
     while has_hp(teams[0], teams[1]):
+
+        print(curr_board)
+        print(curr_board_without_players)
 
         print(f"====| GAME ROUND {game_round} |====")
         print_message(ct=ct)
@@ -78,6 +84,10 @@ def play(ct, cp):
 
         is_move_valid = False
 
+        """ Move the player and update the Board by inserting the new player's position. If the player leaves a cell that
+        contains a card [C] or a sphere [X] without interacting with it, the board_without_players re-inserts the cell's value on the
+        main board"""
+
         while not is_move_valid:
             x, y = MOVE()
 
@@ -87,13 +97,11 @@ def play(ct, cp):
             else:
                 is_move_valid = True
 
-        print(">    updating player to new position...")
+        curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = curr_board_without_players[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()]  # restoring cards or spheres
 
         teams[ct][cp]._set_pos_x(x)
         teams[ct][cp]._set_pos_y(y)
-
-        print(">    updating map...")
-        curr_board[x][y] = teams[ct][cp]
+        curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = teams[ct][cp]
 
         choice = 0
         while choice != 1 or choice != 2 or choice != 3 or choice != 4:
@@ -111,6 +119,8 @@ def play(ct, cp):
                 choice = 4
 
             if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "C":
+                curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = 0  # remove card from board
+                curr_board_without_players[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = 0  # update also board without players
                 input(f"{teams[ct][cp]._name} picks a card")
                 choice = 4
 
