@@ -4,16 +4,18 @@ from utils.logprinter import print_message
 
 
 def analyze_current_cell(curr_board, x, y):
-    print(f"analyzing: {x}, {y}")
-
+    print(f"{x}, {y}")
     if curr_board[x][y] == 0:
         return None
     if curr_board[x][y] == "T":
         print(f"There's a trap! Oh no")
         return "T"
-    else:
+    elif curr_board[x][y] == "C":
         print(f"Pick a card")
         return "C"
+
+    else:
+        return
 
 
 def has_hp(team_purple, team_orange):
@@ -43,7 +45,14 @@ def CHOICE(curr_board, choice, character):
         print("Current player passed. ")
         return
     elif choice == 1:
-        return analyze_current_cell(curr_board, character._get_pos_x(), character._get_pos_y())
+        if curr_board[character._get_pos_x()][character._get_pos_y()] == 'C':
+            return "C"
+        elif curr_board[character._get_pos_x()][character._get_pos_y()] == 'T':
+            return "T"
+        elif curr_board[character._get_pos_x()][character._get_pos_y()] == 'X':
+            return "X"
+        else:
+            return 0
 
 
 def MOVE():

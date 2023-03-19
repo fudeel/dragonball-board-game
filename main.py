@@ -4,7 +4,6 @@ from utils.game import generate_game_board, teams
 from utils.logprinter import print_message, print_character
 import copy
 
-
 freezer = Character(name="Freezer",
                     basic_aoe=3,
                     attack=5,
@@ -66,6 +65,7 @@ def play(ct, cp):
 
         print(f"====| GAME ROUND {game_round} |====")
         print_message(ct=ct)
+        print("")
 
         if ct == 1 and pp == -1:
             pp = cp
@@ -80,6 +80,7 @@ def play(ct, cp):
                 pp = -1
 
         print_character(teams[ct][cp])
+        print("")
         print(f"{teams[ct][cp]._name} roll a Dice and move around the map to find the Dragon Balls")
 
         is_move_valid = False
@@ -97,11 +98,15 @@ def play(ct, cp):
             else:
                 is_move_valid = True
 
-        curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = curr_board_without_players[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()]  # restoring cards or spheres
+        curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = \
+            curr_board_without_players[teams[ct][cp]._get_pos_x()][
+                teams[ct][cp]._get_pos_y()]  # restoring cards or spheres
 
         teams[ct][cp]._set_pos_x(x)
         teams[ct][cp]._set_pos_y(y)
         curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = teams[ct][cp]
+
+        """ Player makes a choice """
 
         choice = 0
         while choice != 1 or choice != 2 or choice != 3 or choice != 4:
@@ -109,20 +114,21 @@ def play(ct, cp):
             choice = int(input(f"What do you want to do?: \n [1] Analyze current cell \n "
                                f"[2] Attack a cell \n [3] Use a card \n [4] Pass"))
 
-            if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) is None:
-                choice = 4
+            if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == 0:
+                END_TURN()
 
             if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "T":
                 print(f"There was a trap. {teams[ct][cp]._name} loses 1 HP")
                 teams[ct][cp].reduce_hp(1)
                 print(f"Updated {teams[ct][cp]._name}'s HP: {teams[ct][cp]._get_hp()}")
-                choice = 4
+
+                END_TURN()
 
             if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "C":
-                curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = 0  # remove card from board
-                curr_board_without_players[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = 0  # update also board without players
+                curr_board_without_players[teams[ct][cp]._get_pos_x()][
+                    teams[ct][cp]._get_pos_y()] = 0  # remove card from board
                 input(f"{teams[ct][cp]._name} picks a card")
-                choice = 4
+                END_TURN()
 
             if choice == 2:
                 xs, ys = ATTACK(teams[ct][cp])
@@ -173,6 +179,9 @@ def play(ct, cp):
                 break
 
         game_round += 1
+
+        for i in range(50):
+            print("")
 
 
 def game():

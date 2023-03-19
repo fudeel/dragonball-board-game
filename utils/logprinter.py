@@ -21,7 +21,6 @@ NAMES = {
 
 
 def print_message(*args, **kwargs):
-    print(f"kwargs: {kwargs}")
     if 'ct' in kwargs and kwargs['ct'] == 0 and 'end' not in kwargs:
         print(f"Current team: {Fore.MAGENTA} PURPLE {Fore.RESET} ")
     elif 'ct' in kwargs and kwargs['ct'] == 1 and 'end' not in kwargs:
