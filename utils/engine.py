@@ -1,5 +1,7 @@
 import random
 
+from utils.logprinter import print_message
+
 
 def analyze_current_cell(curr_board, x, y):
     print(f"analyzing: {x}, {y}")
@@ -14,6 +16,26 @@ def analyze_current_cell(curr_board, x, y):
         print(f"Pick a card")
         curr_board[x][y] = 0
         return "C"
+
+
+def has_hp(team_purple, team_orange):
+    print(team_purple)
+    print(team_orange)
+    # Check if arr1 has an element with hp > 0
+    has_hp_arr1 = any(element._get_hp() > 0 for element in team_purple)
+    if not has_hp_arr1:
+        print_message(ct=1, end=True)
+        return False
+
+    # Check if arr2 has an element with hp > 0
+    has_hp_arr2 = any(element._get_hp() > 0 for element in team_orange)
+    if not has_hp_arr2:
+        print_message(ct=0, end=True)
+        return False
+
+    # Return True if both arrays have an element with hp > 0
+    print("Both teams are playing")
+    return has_hp_arr1 and has_hp_arr2
 
 
 def START():

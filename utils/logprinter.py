@@ -22,10 +22,19 @@ NAMES = {
 
 def print_message(*args, **kwargs):
     print(f"kwargs: {kwargs}")
-    if 'ct' in kwargs and kwargs['ct'] == 0:
+    if 'ct' in kwargs and kwargs['ct'] == 0 and 'end' not in kwargs:
         print(f"Current team: {Fore.MAGENTA} PURPLE {Fore.RESET} ")
-    else:
+    elif 'ct' in kwargs and kwargs['ct'] == 1 and 'end' not in kwargs:
         print(f"Current team: {bcolors.WARNING} ORANGE {Fore.RESET}")
+
+    elif 'ct' in kwargs and kwargs['ct'] == 0 and 'end' in kwargs and kwargs['end'] == True:
+        print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
+        print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
+        print(f"TEAM {bcolors.WARNING} ORANGE {Fore.RESET} HAS WON!")
+    else:
+        print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
+        print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
+        print(f"TEAM {Fore.MAGENTA} PURPLE {Fore.RESET} HAS WON!")
 
 
 def print_character(character):
