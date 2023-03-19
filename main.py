@@ -169,3 +169,4 @@ def game():
 game()
 
 print("GAME ENDED.")
+input("Press ENTER to close. . . ")
