@@ -30,7 +30,11 @@ def ensure_numbers_of_elements(gb):
 
 
 def generate_game_board():
-    print("> Generating board... ")
+    """
+    Function that generates a game board inserting Spheres, Cards and Traps on it. The number of elements
+    depends on from the game mode settings.
+    :return: game board with all elements in it
+    """
     game_board = board
 
     # Put balls in map
