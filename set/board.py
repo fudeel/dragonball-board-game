@@ -9,7 +9,7 @@ from utils.game import game_state, save_game
 
 """
 
-gm = GameMode(id=1, size=16, s=7, c=5, t=5)
+gm = GameMode(id=1, size=16, s=0, c=0, t=0)
 
 
 def ensure_numbers_of_elements(gb):
@@ -18,7 +18,7 @@ def ensure_numbers_of_elements(gb):
     :param gb:
     :return:
     """
-    char_count = {'C': 0, 'T': 0, 'X': 0}
+    char_count = {'C': 0, 'T': 0, 'S': 0, 0: 0}
 
     for row in gb:
         for char in row:
@@ -27,7 +27,8 @@ def ensure_numbers_of_elements(gb):
 
     print(f"Number of 'C's: {char_count['C']}")
     print(f"Number of 'T's: {char_count['T']}")
-    print(f"Number of 'X's: {char_count['X']}")
+    print(f"Number of 'S's: {char_count['S']}")
+    print(f"Number of '0's: {char_count[0]}")
 
 
 def generate_game_board():
@@ -36,8 +37,7 @@ def generate_game_board():
     depends on from the game mode settings.
     :return: game board with all elements in it
     """
-
-    print(f"{gm.size}")
+    
     board = [[0 for j in range(gm.size)] for i in range(gm.size)]
 
     # Put balls in map
@@ -45,8 +45,8 @@ def generate_game_board():
         while True:
             row = random.randint(0, gm.size - 1)
             col = random.randint(0, gm.size - 1)
-            if board[row][col] == 0:
-                board[row][col] = "X"
+            if board[row][col] == 0 and board[row][col] != "S":
+                board[row][col] = "S"
                 break
 
     # Put cards in map
@@ -54,8 +54,7 @@ def generate_game_board():
         while True:
             row = random.randint(0, gm.size - 1)
             col = random.randint(0, gm.size - 1)
-            if board[row][col] == 0 and "X" not in board[row] \
-                    and "X" not in [board[r][col] for r in range(gm.size - 1)]:
+            if board[row][col] == 0 and board[row][col] != "S" and board[row][col] != "C":
                 board[row][col] = "C"
                 break
 
@@ -64,13 +63,11 @@ def generate_game_board():
         while True:
             row = random.randint(0, gm.size - 1)
             col = random.randint(0, gm.size - 1)
-            if board[row][col] == 0 and "X" not in board[row] \
-                    and "X" not in [board[r][col] for r in range(gm.size - 1)] \
-                    and "C" not in board[row] and "C" not in [board[r][col] for r in range(gm.size - 1)]:
+            if board[row][col] == 0 and board[row][col] != "S" and board[row][col] != "C" and board[row][col] != "T":
                 board[row][col] = "T"
                 break
 
-    # ensure_numbers_of_elements(game_board)
+    ensure_numbers_of_elements(board)
 
     game_state['board'] = board
     save_game(game_state, 'saved_game.json')
