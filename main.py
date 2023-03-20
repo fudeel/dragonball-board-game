@@ -26,7 +26,7 @@ goku = Character(
     defense=4,
     energy=8,
     attack=4,
-    basic_aoe=2,
+    basic_aoe=1,
     hp=8
 )
 
@@ -37,7 +37,7 @@ vegeta = Character(
     defense=4,
     energy=8,
     attack=4,
-    basic_aoe=2,
+    basic_aoe=1,
     hp=8
 )
 
