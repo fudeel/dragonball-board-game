@@ -1,20 +1,22 @@
 import random
 
 from models.gamemode import GameMode
+from set.cards import generate_cards
 from utils.game import game_state, save_game
 
-"""gamemodes that generate different map
+# game-modes that generate different map [1] 16x16 / 7 spheres / 20 traps / 20 cards
 
-[1] 16x16 / 7 spheres / 20 traps / 20 cards
 
-"""
+cards = generate_cards()
 
-gm = GameMode(id=1, size=16, s=200, c=7, t=48)
+print(f"CARDS {cards}")
+
+gm = GameMode(id=1, size=16, s=0, c=(len(cards)), t=0)
 
 
 def ensure_numbers_of_elements(gb):
     """
-    This function is used to count elements on board, to esnure if the initialization puts the correct elements on it.
+    This function is used to count elements on board, to ensure if the initialization puts the correct elements on it.
     :param gb:
     :return:
     """

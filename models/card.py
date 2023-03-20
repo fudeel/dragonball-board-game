@@ -1,5 +1,6 @@
 class Card:
 
+    _duration = 0
     def __init__(self, id, desc, tar, eff_code):
         self._id = id  # card id
         self._description = desc  # card description
@@ -29,3 +30,9 @@ class Card:
 
     def set_effect_code(self, code):
         self._effect_code = code
+
+    def use_card(self):
+        if self._effect_code == 000 and self._target == 'me':
+            # increase attack power by 1
+            self._duration = 5
+            return ['attack', 1]
