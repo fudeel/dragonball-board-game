@@ -13,16 +13,16 @@ class Character:
     def __str__(self):
         return f"Character: Name={self._name} Defense={self._defense}, Attack={self._attack}, HP={self._hp}, Energy={self._energy}, Is carrying Dragonball={self._carrying_spheres}, is making AoE={self._basic_aoe}x{self._basic_aoe}, he's in cell: (x: {self._pos_x} y: {self._pos_y}) "
 
-    def _get_hp(self):
+    def get_hp(self):
         return self._hp
 
-    def _set_hp(self, hp):
+    def set_hp(self, hp):
         self._hp = hp
 
-    def _get_name(self):
+    def get_name(self):
         return self._name
 
-    def _set_name(self, name):
+    def set_name(self, name):
         self._name = name
 
     def move_player(self, new_pos_x, new_pos_y):
@@ -70,35 +70,35 @@ class Character:
     def drop_sphere(self):
         self._carrying_spheres = False
 
-    def _get_pos_x(self):
+    def get_pos_x(self):
         return self._pos_x
 
-    def _set_pos_x(self, x):
+    def set_pos_x(self, x):
         self._pos_x = x
 
-    def _get_pos_y(self):
+    def get_pos_y(self):
         return self._pos_y
 
-    def _set_pos_y(self, y):
+    def set_pos_y(self, y):
         self._pos_y = y
 
-    def _get_carrying_spheres(self):
+    def get_carrying_spheres(self):
         return self._carrying_spheres
 
-    def _set_carrying_spheres(self, is_drop):
+    def set_carrying_spheres(self, is_drop):
         if is_drop:
             self._carrying_spheres = 0
         else:
             self._carrying_spheres = 1
 
-    def _get_defense(self):
+    def get_defense(self):
         return self._defense
 
-    def _set_defense(self, val):
+    def set_defense(self, val):
         self._defense = val
 
-    def _get_attack(self):
+    def get_attack(self):
         return self._attack
 
-    def _set_attack(self, val):
+    def set_attack(self, val):
         self._attack = val

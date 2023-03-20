@@ -20,13 +20,13 @@ def analyze_current_cell(curr_board, x, y):
 
 def has_hp(team_purple, team_orange):
     # Check if arr1 has an element with hp > 0
-    has_hp_arr1 = any(element._get_hp() > 0 for element in team_purple)
+    has_hp_arr1 = any(element.get_hp() > 0 for element in team_purple)
     if not has_hp_arr1:
         print_message(ct=0, end=True)
         return False
 
     # Check if arr2 has an element with hp > 0
-    has_hp_arr2 = any(element._get_hp() > 0 for element in team_orange)
+    has_hp_arr2 = any(element.get_hp() > 0 for element in team_orange)
     if not has_hp_arr2:
         print_message(ct=1, end=True)
         return False
@@ -45,11 +45,11 @@ def CHOICE(curr_board, choice, character):
         print("Current player passed. ")
         return
     elif choice == 1:
-        if curr_board[character._get_pos_x()][character._get_pos_y()] == 'C':
+        if curr_board[character.get_pos_x()][character.get_pos_y()] == 'C':
             return "C"
-        elif curr_board[character._get_pos_x()][character._get_pos_y()] == 'T':
+        elif curr_board[character.get_pos_x()][character.get_pos_y()] == 'T':
             return "T"
-        elif curr_board[character._get_pos_x()][character._get_pos_y()] == 'X':
+        elif curr_board[character.get_pos_x()][character.get_pos_y()] == 'X':
             return "S"
         else:
             return 0

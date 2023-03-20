@@ -75,8 +75,8 @@ def init_players_on_map(character, gm):
             player_is_ready = False
             print("There's another element in this cell.")
         else:
-            character._set_pos_x(x)
-            character._set_pos_y(y)
+            character.set_pos_x(x)
+            character.set_pos_y(y)
             curr_board[x][y] = character
             player_is_ready = True
 
@@ -124,13 +124,13 @@ def play(ct, cp):
             else:
                 is_move_valid = True
 
-        curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = \
-            curr_board_without_players[teams[ct][cp]._get_pos_x()][
-                teams[ct][cp]._get_pos_y()]  # restoring cards or spheres
+        curr_board[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = \
+            curr_board_without_players[teams[ct][cp].get_pos_x()][
+                teams[ct][cp].get_pos_y()]  # restoring cards or spheres
 
-        teams[ct][cp]._set_pos_x(x)
-        teams[ct][cp]._set_pos_y(y)
-        curr_board[teams[ct][cp]._get_pos_x()][teams[ct][cp]._get_pos_y()] = teams[ct][cp]
+        teams[ct][cp].set_pos_x(x)
+        teams[ct][cp].set_pos_y(y)
+        curr_board[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = teams[ct][cp]
 
         """ Player makes a choice """
 
@@ -146,13 +146,13 @@ def play(ct, cp):
             if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "T":
                 print(f"There was a trap. {teams[ct][cp]._name} loses 1 HP")
                 teams[ct][cp].reduce_hp(1)
-                print(f"Updated {teams[ct][cp]._name}'s HP: {teams[ct][cp]._get_hp()}")
+                print(f"Updated {teams[ct][cp]._name}'s HP: {teams[ct][cp].get_hp()}")
 
                 END_TURN()
 
             if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "C":
-                curr_board_without_players[teams[ct][cp]._get_pos_x()][
-                    teams[ct][cp]._get_pos_y()] = 0  # remove card from board
+                curr_board_without_players[teams[ct][cp].get_pos_x()][
+                    teams[ct][cp].get_pos_y()] = 0  # remove card from board
                 input(f"{teams[ct][cp]._name} picks a card")
                 END_TURN()
 
@@ -184,8 +184,8 @@ def play(ct, cp):
 
                         if isinstance(curr_board[i][j], Character):
 
-                            enemy_def = curr_board[i][j]._get_defense()
-                            player_att = teams[ct][cp]._get_attack()
+                            enemy_def = curr_board[i][j].get_defense()
+                            player_att = teams[ct][cp].get_attack()
 
                             damage = player_att - enemy_def
 
