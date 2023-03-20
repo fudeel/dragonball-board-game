@@ -1,6 +1,8 @@
 import copy
 import random
 
+from colorama import Fore
+
 from models.character import Character
 from set.board import generate_game_board, gm
 from utils.engine import START, END_TURN, MOVE, ATTACK, has_hp, search_card_information
@@ -148,11 +150,11 @@ def play(ct, cp):
                     teams[ct][cp].set_cards(collected_card)
 
                     END_TURN()
-                    print(f"{teams[ct][cp].get_name()} collected {collected_card.get_name()}")
+                    print(f"{teams[ct][cp].get_name()} collected {Fore.CYAN}{collected_card.get_name()}{Fore.RESET}")
                     END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'T':
                     # player gets damage from a trap
-                    print(f"Oh no! It was a trap! {teams[ct][cp].get_name()}'s HP reduced by 1")
+                    print(f"Oh no! It was a trap! {teams[ct][cp].get_name()}'s HP reduced by {Fore.RED} 1 {Fore.RESET}")
                     teams[ct][cp].reduce_hp(1)
                     END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == "S":
