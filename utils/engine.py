@@ -71,6 +71,14 @@ def MOVE():
 
 
 def ATTACK(attacker=None):
+    """
+    Function that handles the attacking cells. In some cases the player has a greater range than 1x1.
+    This function returns only the rows and the columsn that must be attacked, not the cells within the box. They
+    are computed after this function.
+
+    :param attacker: -> is the current player
+    :return: rows and columns to attack
+    """
     x = -1
     y = -1
 

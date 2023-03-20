@@ -154,12 +154,12 @@ def play(ct, cp):
                     pass
 
             if choice == 2:
-                xs, ys = ATTACK(teams[ct][cp])
-                sorted_xs = sorted(xs)
-                sorted_ys = sorted(ys)
+                xs, ys = ATTACK(teams[ct][cp])  # rows and columns arrays
+                sorted_xs = sorted(xs)  # sorting from smaller to greater
+                sorted_ys = sorted(ys)  # sorting from smaller to greater
 
-                row_cells_to_attack = []
-                columns_cells_to_attack = []
+                row_cells_to_attack = []  # rows within area init
+                columns_cells_to_attack = []  # columns within area init
 
                 # Iterate through the range of numbers between the first and second elements of `array`
                 for i in range(sorted_xs[0], sorted_xs[1] + 1):
