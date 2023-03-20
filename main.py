@@ -86,8 +86,8 @@ def play(ct, cp):
     global game_round
     while has_hp(teams[0], teams[1]):
 
-        print(curr_board)
-        print(curr_board_without_players)
+        # print(curr_board)
+        # print(curr_board_without_players)
 
         print(f"====| GAME ROUND {game_round} |====")
         print_message(ct=ct)
@@ -209,7 +209,9 @@ def play(ct, cp):
                     print("BOMB DROPPED")
                     curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = "S"
 
-                    aligned = ALIGN_SPHERES(curr_board_without_players, teams[ct], curr_board_without_players[teams[ct][cp].get_pos_x()], curr_board_without_players[teams[ct][cp].get_pos_y()], (gm.size - 1))
+                    aligned = ALIGN_SPHERES(curr_board_without_players, teams[ct],
+                                            curr_board_without_players[teams[ct][cp].get_pos_x()],
+                                            curr_board_without_players[teams[ct][cp].get_pos_y()], (gm.size - 1))
 
                     if aligned is True:
                         print(f"GAME ENDED")
@@ -233,24 +235,24 @@ def play(ct, cp):
             #        print("use card")
             #        card_id = int(input("Insert the card you want to use:     "))
             #        selected_card = teams[ct][cp].get_card_by_id(card_id)
-#
+            #
             #        print(f"Selected card: {selected_card.get_name()}")
-#
+            #
             #        if selected_card.get_target() == "me":
             #            effect = selected_card.use_card()[0]
             #            attribute = effect[0]
             #            qty = effect[1]
             #            duration = selected_card.get_duration()
-#
+            #
             #            print(attribute)
             #            print(qty)
-#
+            #
             #            if attribute == 'attack':
             #                current_attack = teams[ct][cp].get_attack()
             #                tot = current_attack + qty
             #                print(tot)
             #                teams[ct][cp].set_attack(tot)
-#
+            #
             #            if teams[ct][cp].get_card_slot_1() is None:
             #                teams[ct][cp].set_card_slot_1(selected_card)
             #                teams[ct][cp].set_card_slot_1_duration(duration)
