@@ -45,7 +45,7 @@ def print_message(*args, **kwargs):
 
 def print_character(character):
     t = PrettyTable()
-    t.field_names = ["Name", "HP", "Attack", "Defense", "AOE", "S", "Y"]
+    t.field_names = ["Name", "HP", "Attack", "Defense", "AOE", "X", "Y"]
     t.add_row(
         [character._name, character._hp, character._attack, character._defense, character._basic_aoe, character._pos_x,
          character._pos_y])

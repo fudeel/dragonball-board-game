@@ -109,7 +109,7 @@ def play(ct, cp):
         is_move_valid = False
 
         """ Move the player and update the Board by inserting the new player's position. If the player leaves a cell that
-        contains a card [C] or a sphere [X] without interacting with it, the board_without_players re-inserts the cell's value on the
+        contains a card [C] or a sphere [S] without interacting with it, the board_without_players re-inserts the cell's value on the
         main board"""
 
         while not is_move_valid:
