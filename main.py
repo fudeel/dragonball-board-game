@@ -54,10 +54,10 @@ pp = -1  # previous player in orange
 
 game_round = 0  # init game round
 
-gm = gm
+gm = gm  # game mode contains all the board settings
 
-curr_board = generate_game_board()
-curr_board_without_players = copy.deepcopy(curr_board)
+curr_board = generate_game_board()  # game board that contains elements and players
+curr_board_without_players = copy.deepcopy(curr_board)  # game board that contains elements only for easy replacements
 
 
 def init_players_on_map(character, gm):

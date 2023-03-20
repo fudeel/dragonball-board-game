@@ -37,6 +37,10 @@ def has_hp(team_purple, team_orange):
 
 
 def START():
+    """
+    Tells which team starts first
+    :return:
+    """
     return random.randint(0, 1)
 
 
