@@ -142,12 +142,16 @@ def play(ct, cp):
                     print(f"{teams[ct][cp].get_name()} found a card! Pick the card and insert its value")
                     input(f"Card's number:  ")
                     curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = 0
+                    END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'T':
                     print(f"Oh no! It was a trap! {teams[ct][cp].get_name()}'s HP reduced by 1")
                     teams[ct][cp].reduce_hp(1)
+                    END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == "S":
                     print(f"YES! {teams[ct][cp].get_name()} has found a Dragon Ball sphere!")
+                    END_TURN()
                 else:
+                    END_TURN()
                     pass
 
             if choice == 2:
@@ -157,6 +161,8 @@ def play(ct, cp):
 
                 row_cells_to_attack = []  # rows within area init
                 columns_cells_to_attack = []  # columns within area init
+
+                END_TURN()
 
                 # Iterate through the range of numbers between the first and second elements of `array`
                 for i in range(sorted_xs[0], sorted_xs[1] + 1):
