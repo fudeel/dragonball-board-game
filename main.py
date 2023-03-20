@@ -14,8 +14,7 @@ freezer = Character(name="Freezer",
                     defense=4,
                     hp=2,
                     pos_x=15,
-                    pos_y=15,
-                    carrying_spheres=0)
+                    pos_y=15)
 
 goku = Character(
     name='Goku',
@@ -25,7 +24,6 @@ goku = Character(
     energy=8,
     attack=4,
     basic_aoe=2,
-    carrying_spheres=0,
     hp=2
 )
 
@@ -37,7 +35,6 @@ vegeta = Character(
     energy=8,
     attack=4,
     basic_aoe=2,
-    carrying_spheres=0,
     hp=2
 )
 

@@ -1,11 +1,13 @@
 class Character:
-    def __init__(self, name, defense, attack, hp, energy, carrying_spheres, basic_aoe, pos_x, pos_y):
+    _cards = []
+    _carrying_spheres = False  # is the current player carrying a dragon ball?
+
+    def __init__(self, name, defense, attack, hp, energy, basic_aoe, pos_x, pos_y):
         self._name = name
         self._defense = defense  # reduces the attack
         self._attack = attack  # reduces hp to the opposite player
         self._hp = hp  # health points
         self._energy = energy  # if maximum can perform special attack. Each turn reloads by 1 unit
-        self._carrying_spheres = carrying_spheres  # is the current player carrying a dragon ball?
         self._basic_aoe = basic_aoe  # area of attack. 1x1, 2x2, 4x4, 8x8. Can also be 30x30 with energy sphere
         self._pos_x = pos_x
         self._pos_y = pos_y
@@ -102,3 +104,9 @@ class Character:
 
     def set_attack(self, val):
         self._attack = val
+
+    def get_cards(self):
+        return self._cards
+
+    def set_cards(self, card):
+        self._cards.append(card)
