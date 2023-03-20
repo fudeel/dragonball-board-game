@@ -100,16 +100,21 @@ def ATTACK(attacker=None):
     x = -1
     y = -1
 
-    while x < 0 or x > 15 or y < 0 or y > 15:
-        x = int(input("Enter the row to attack:   "))
-        y = int(input("Enter the column to attack:    "))
+    while x < 0 or x > (gm.size - 1) or y < 0 or y > (gm.size - 1):
+
+        try:
+            x = int(input("Enter the row to attack:   "))
+            y = int(input("Enter the column to attack:    "))
+
+        except:
+            print(f"Error. You can attack someone between 0 and {gm.size - 1}")
 
     xs = []
     ys = []
 
     print(f"attacker has {attacker._basic_aoe} AOE.")
 
-    if x * attacker._basic_aoe <= 15:
+    if x * attacker._basic_aoe <= gm.size - 1:
         xs.append(x)
         xs.append((x + (1 * attacker._basic_aoe)) - 1)
     else:
