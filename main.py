@@ -162,8 +162,6 @@ def play(ct, cp):
                 row_cells_to_attack = []  # rows within area init
                 columns_cells_to_attack = []  # columns within area init
 
-                END_TURN()
-
                 # Iterate through the range of numbers between the first and second elements of `array`
                 for i in range(sorted_xs[0], sorted_xs[1] + 1):
                     # Append each number to `array_2`
@@ -191,6 +189,8 @@ def play(ct, cp):
                             print(
                                 f"{teams[ct][cp].get_name()} hits {curr_board[i][j].get_name()} and deals {damage} damage")
                             curr_board[i][j].reduce_hp(damage)
+
+                END_TURN()
             if choice == 4:
                 END_TURN()
 
