@@ -125,3 +125,48 @@ def END_TURN():
     print(f"Turn completed. Press ENTER to continue. . . ")
     input()
     print(f"=============================================")
+
+
+def ALIGN_SPHERES(board, ct, row, col, size):
+    """
+    Once a player drops a Dragonball sphere, this function counts if he has aligned all 7
+    :param board: entire board without players
+    :param ct: current team
+    :param point: drop cell
+    :return: winning true / false
+    """
+
+    print(f"board size: {size}x{size}")
+
+    # row
+    count = 0
+
+    for r in range(size):
+        for c in range(size):
+            if board[r][c] == 'S':
+                count += 1
+                print(f"yes rxc-> {r}x{c} {board[r][c]}")
+
+                if count >= 7:
+                    print("AAAAAAAA")
+
+                    return True
+            elif 0 < count < 7 and board[r][c] != "S":
+                print("No win ")
+                count = 0
+                break
+
+        for r in range(size):
+            for c in range(size):
+                if board[c][r] == 'S':
+                    count += 1
+                    print(f"yes rxc-> {r}x{c} {board[c][r]}")
+
+                    if count >= 7:
+                        return True
+                elif 0 < count < 7 and board[c][r] != "S":
+                    print("No win ")
+                    count = 0
+                    break
+
+        return False

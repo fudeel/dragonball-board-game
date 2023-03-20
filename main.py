@@ -4,8 +4,9 @@ import random
 from colorama import Fore
 
 from models.character import Character
+from models.colors import bcolors
 from set.board import generate_game_board, gm
-from utils.engine import START, END_TURN, MOVE, ATTACK, has_hp, search_card_information
+from utils.engine import START, END_TURN, MOVE, ATTACK, has_hp, search_card_information, ALIGN_SPHERES
 from utils.game import teams
 from utils.logprinter import print_message, print_character
 
@@ -203,10 +204,30 @@ def play(ct, cp):
 
                 END_TURN()
 
-            if choice == 3:
+            if choice == 3 and teams[ct][cp].get_carrying_spheres() is True:
                 if curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 0:
                     print("BOMB DROPPED")
                     curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = "S"
+
+                    aligned = ALIGN_SPHERES(curr_board_without_players, teams[ct], curr_board_without_players[teams[ct][cp].get_pos_x()], curr_board_without_players[teams[ct][cp].get_pos_y()], (gm.size - 1))
+
+                    if aligned is True:
+                        print(f"GAME ENDED")
+                        if curr_team == 0:
+                            print(f"Team {Fore.MAGENTA}PURPLE{Fore.RESET} has won!")
+                            print(f"Team {Fore.MAGENTA}PURPLE{Fore.RESET} has won!")
+                            print(f"Team {Fore.MAGENTA}PURPLE{Fore.RESET} has won!")
+                            print(f"Team {Fore.MAGENTA}PURPLE{Fore.RESET} has won!")
+                            return True
+                        else:
+                            print(f"Team {bcolors.WARNING}ORANGE{Fore.RESET} has won!")
+                            print(f"Team {bcolors.WARNING}ORANGE{Fore.RESET} has won!")
+                            print(f"Team {bcolors.WARNING}ORANGE{Fore.RESET} has won!")
+                            print(f"Team {bcolors.WARNING}ORANGE{Fore.RESET} has won!")
+                            return True
+
+                else:
+                    print("Ops! You can't leave it here! Pay attention on the next turn \n")
                 END_TURN()
             #    if teams[ct][cp].get_card_slot_1() is None or teams[ct][cp].get_card_slot_2() is None:
             #        print("use card")
@@ -239,6 +260,9 @@ def play(ct, cp):
             #        print("card used successfully")
             #        print_character(teams[ct][cp])
 
+            else:
+                print("You're not carrying any Dragonball Sphere. Pay attention on your next turn")
+                END_TURN()
 
             if choice == 4:
                 END_TURN()

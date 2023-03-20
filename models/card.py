@@ -45,9 +45,7 @@ class Card:
         self._duration = duration
 
     def use_card(self):
-        print("AAAAAAAAAAAAAA")
         if self._effect_code == 000 and self._target == 'me':
-            print("BBBBBBBBBBBBBBBBBBBB")
             # increase attack power by 1
             return 'attack', 1
         else:
