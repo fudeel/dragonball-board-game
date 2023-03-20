@@ -139,6 +139,7 @@ def play(ct, cp):
 
             if choice == 1:
                 if curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'C':
+                    # player picks a card and enters its number on the system
                     print(f"{teams[ct][cp].get_name()} found a card! Pick the card and insert its value")
                     card_id = int(input(f"Card's number:  "))
                     curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = 0
@@ -150,10 +151,12 @@ def play(ct, cp):
                     print(f"{teams[ct][cp].get_name()} collected {collected_card.get_name()}")
                     END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'T':
+                    # player gets damage from a trap
                     print(f"Oh no! It was a trap! {teams[ct][cp].get_name()}'s HP reduced by 1")
                     teams[ct][cp].reduce_hp(1)
                     END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == "S":
+                    # player discovered a Dragonball sphere
                     print(f"YES! {teams[ct][cp].get_name()} has found a Dragon Ball sphere!")
                     END_TURN()
                 else:
