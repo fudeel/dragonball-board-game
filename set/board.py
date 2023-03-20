@@ -9,7 +9,7 @@ from utils.game import game_state, save_game
 
 """
 
-gm = GameMode(id=1, size=16, s=0, c=0, t=0)
+gm = GameMode(id=1, size=16, s=7, c=200, t=48)
 
 
 def ensure_numbers_of_elements(gb):
