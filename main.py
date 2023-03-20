@@ -173,14 +173,11 @@ def play(ct, cp):
                 # attack
                 for i in row_cells_to_attack:
                     for j in columns_cells_to_attack:
-                        print(curr_board[i][j])
-
                         if curr_board[i][j] == "T":
                             print("Destroyed a Trap!")
                             curr_board[i][j] = 0
 
                         if isinstance(curr_board[i][j], Character):
-
                             enemy_def = curr_board[i][j].get_defense()
                             player_att = teams[ct][cp].get_attack()
 
@@ -188,7 +185,8 @@ def play(ct, cp):
 
                             if damage <= 0:
                                 damage = 1
-
+                            print(
+                                f"{teams[ct][cp].get_name()} hits {curr_board[i][j].get_name()} and deals {damage} damage")
                             curr_board[i][j].reduce_hp(damage)
             if choice == 4:
                 END_TURN()
