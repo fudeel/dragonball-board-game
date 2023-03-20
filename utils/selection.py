@@ -1,7 +1,7 @@
 from models.character import Character
 
 
-def character_selection(taken = []):
+def character_selection(taken=[]):
     characters = ['goku', 'piccolo', 'crilin', 'gohan', 'vegeta']
     character = ""
 

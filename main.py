@@ -1,12 +1,11 @@
+import copy
 import random
 
 from models.character import Character
-from set.board import generate_game_board
+from set.board import generate_game_board, gm
 from utils.engine import START, CHOICE, END_TURN, MOVE, ATTACK, has_hp
 from utils.game import teams
-
 from utils.logprinter import print_message, print_character
-import copy
 
 freezer = Character(name="Freezer",
                     basic_aoe=3,
@@ -55,11 +54,13 @@ pp = -1  # previous player in orange
 
 game_round = 0  # init game round
 
+gm = gm
+
 curr_board = generate_game_board()
 curr_board_without_players = copy.deepcopy(curr_board)
 
 
-def init_players_on_map(character):
+def init_players_on_map(character, gm):
     """
     @:param character
     this function is used to put players on a map before the game starts. It ensures also that the players are
@@ -67,8 +68,8 @@ def init_players_on_map(character):
 
     player_is_ready = False
     while player_is_ready is not True:
-        x = random.randint(0, 15)
-        y = random.randint(0, 15)
+        x = random.randint(0, gm.size - 1)
+        y = random.randint(0, gm.size - 1)
 
         if isinstance(curr_board[x][y], Character) and curr_board[x][y] == 0:
             player_is_ready = False
@@ -213,10 +214,10 @@ def game():
     print("Putting players on the board...")
 
     for i in team_purple:
-        init_players_on_map(i)
+        init_players_on_map(i, gm)
 
     for i in team_orange:
-        init_players_on_map(i)
+        init_players_on_map(i, gm)
 
     if curr_team == 0:
         ct = 0

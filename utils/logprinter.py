@@ -1,6 +1,7 @@
-from models.colors import bcolors
 from colorama import init, Fore, Back, Style
 from prettytable import PrettyTable
+
+from models.colors import bcolors
 
 init()
 

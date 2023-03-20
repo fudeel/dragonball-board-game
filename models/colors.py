@@ -17,4 +17,3 @@ class bcolors:
         self.WARNING = ''
         self.FAIL = ''
         self.ENDC = ''
-

@@ -91,7 +91,6 @@ class Character:
         else:
             self._carrying_spheres = 1
 
-
     def _get_defense(self):
         return self._defense
 

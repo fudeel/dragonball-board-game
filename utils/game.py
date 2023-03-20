@@ -1,7 +1,6 @@
 import json
-import random
+
 from models.character import Character
-from set import board
 from utils.selection import character_selection
 
 game_state = {}
@@ -49,5 +48,3 @@ def init():
         remaining_players -= 1
 
     teams.append(team_orange)
-
-

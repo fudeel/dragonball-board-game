@@ -9,6 +9,8 @@ from utils.game import game_state, save_game
 
 """
 
+gm = GameMode(id=1, size=16, s=7, c=5, t=5)
+
 
 def ensure_numbers_of_elements(gb):
     char_count = {'C': 0, 'T': 0, 'X': 0}
@@ -29,8 +31,6 @@ def generate_game_board():
     depends on from the game mode settings.
     :return: game board with all elements in it
     """
-
-    gm = GameMode(id=1, size=16, s=7, c=5, t=5)
 
     print(f"{gm.size}")
     board = [[0 for j in range(gm.size)] for i in range(gm.size)]
