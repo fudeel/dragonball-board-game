@@ -1,8 +1,10 @@
 import random
 
 from models.character import Character
+from set.board import generate_game_board
 from utils.engine import START, CHOICE, END_TURN, MOVE, ATTACK, has_hp
-from utils.game import generate_game_board, teams
+from utils.game import teams
+
 from utils.logprinter import print_message, print_character
 import copy
 
