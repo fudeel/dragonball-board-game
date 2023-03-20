@@ -9,6 +9,7 @@ from utils.game import game_state, save_game
 
 """
 
+
 def ensure_numbers_of_elements(gb):
     char_count = {'C': 0, 'T': 0, 'X': 0}
 
@@ -70,4 +71,3 @@ def generate_game_board():
     save_game(game_state, 'saved_game.json')
 
     return board
-
