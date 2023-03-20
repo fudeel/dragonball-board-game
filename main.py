@@ -1,3 +1,5 @@
+import random
+
 from models.character import Character
 from utils.engine import START, CHOICE, END_TURN, MOVE, ATTACK, has_hp
 from utils.game import generate_game_board, teams
@@ -53,6 +55,27 @@ game_round = 0  # init game round
 
 curr_board = generate_game_board()
 curr_board_without_players = copy.deepcopy(curr_board)
+
+
+def init_players_on_map(character):
+    """
+    @:param character
+    this function is used to put players on a map before the game starts. It ensures also that the players are
+    being inserted in a cell that is not used for a Trap, Card or by another player"""
+
+    player_is_ready = False
+    while player_is_ready is not True:
+        x = random.randint(0, 15)
+        y = random.randint(0, 15)
+
+        if isinstance(curr_board[x][y], Character) and curr_board[x][y] == 0:
+            player_is_ready = False
+            print("There's another element in this cell.")
+        else:
+            character._set_pos_x(x)
+            character._set_pos_y(y)
+            curr_board[x][y] = character
+            player_is_ready = True
 
 
 def play(ct, cp):
@@ -185,6 +208,14 @@ def play(ct, cp):
 
 
 def game():
+    print("Putting players on the board...")
+
+    for i in team_purple:
+        init_players_on_map(i)
+
+    for i in team_orange:
+        init_players_on_map(i)
+
     if curr_team == 0:
         ct = 0
         cp = 0
