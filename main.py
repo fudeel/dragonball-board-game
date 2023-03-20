@@ -137,7 +137,7 @@ def play(ct, cp):
         while choice != 1 or choice != 2 or choice != 3 or choice != 4:
 
             choice = int(input(f"What do you want to do?: \n [1] Analyze current cell \n "
-                               f"[2] Attack a cell \n [3] Use a card \n [4] Pass"))
+                               f"[2] Attack a cell \n [3] Drop sphere \n [4] Pass"))
 
             if choice == 1:
                 if curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'C':
@@ -158,6 +158,8 @@ def play(ct, cp):
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == "S":
                     # player discovered a Dragonball sphere
                     print(f"YES! {teams[ct][cp].get_name()} has found a Dragon Ball sphere!")
+                    teams[ct][cp].set_carrying_spheres(True)
+                    curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = 0
                     END_TURN()
                 else:
                     END_TURN()
@@ -201,7 +203,11 @@ def play(ct, cp):
 
                 END_TURN()
 
-            #if choice == 3:
+            if choice == 3:
+                if curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 0:
+                    print("BOMB DROPPED")
+                    curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = "S"
+                END_TURN()
             #    if teams[ct][cp].get_card_slot_1() is None or teams[ct][cp].get_card_slot_2() is None:
             #        print("use card")
             #        card_id = int(input("Insert the card you want to use:     "))
@@ -232,7 +238,7 @@ def play(ct, cp):
             #                teams[ct][cp].set_card_slot_2_duration(duration)
             #        print("card used successfully")
             #        print_character(teams[ct][cp])
-            #    END_TURN()
+
 
             if choice == 4:
                 END_TURN()

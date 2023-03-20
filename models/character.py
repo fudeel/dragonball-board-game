@@ -94,11 +94,11 @@ class Character:
     def get_carrying_spheres(self):
         return self._carrying_spheres
 
-    def set_carrying_spheres(self, is_drop):
-        if is_drop:
-            self._carrying_spheres = 0
+    def set_carrying_spheres(self, val):
+        if val:
+            self._carrying_spheres = True
         else:
-            self._carrying_spheres = 1
+            self._carrying_spheres = False
 
     def get_defense(self):
         return self._defense
