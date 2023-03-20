@@ -15,7 +15,7 @@ freezer = Character(name="Freezer",
                     attack=5,
                     energy=10,
                     defense=4,
-                    hp=2,
+                    hp=15,
                     pos_x=15,
                     pos_y=15)
 
@@ -27,7 +27,7 @@ goku = Character(
     energy=8,
     attack=4,
     basic_aoe=2,
-    hp=2
+    hp=8
 )
 
 vegeta = Character(
@@ -38,7 +38,7 @@ vegeta = Character(
     energy=8,
     attack=4,
     basic_aoe=2,
-    hp=2
+    hp=8
 )
 
 team_purple = [freezer]
@@ -127,6 +127,7 @@ def play(ct, cp):
         curr_board[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = \
             curr_board_without_players[teams[ct][cp].get_pos_x()][
                 teams[ct][cp].get_pos_y()]  # restoring cards or spheres
+
 
         teams[ct][cp].set_pos_x(x)
         teams[ct][cp].set_pos_y(y)
@@ -230,7 +231,12 @@ def play(ct, cp):
 
                 else:
                     print("Ops! You can't leave it here! Pay attention on the next turn \n")
+                    END_TURN()
+            elif choice == 3 and teams[ct][cp].get_carrying_spheres() is False:
+                print("You're not carrying any Dragonball Sphere. Pay attention on your next turn")
                 END_TURN()
+            else:
+                break
             #    if teams[ct][cp].get_card_slot_1() is None or teams[ct][cp].get_card_slot_2() is None:
             #        print("use card")
             #        card_id = int(input("Insert the card you want to use:     "))
@@ -261,10 +267,6 @@ def play(ct, cp):
             #                teams[ct][cp].set_card_slot_2_duration(duration)
             #        print("card used successfully")
             #        print_character(teams[ct][cp])
-
-            else:
-                print("You're not carrying any Dragonball Sphere. Pay attention on your next turn")
-                END_TURN()
 
             if choice == 4:
                 END_TURN()
