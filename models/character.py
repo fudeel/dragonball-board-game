@@ -1,6 +1,13 @@
+from models.card import Card
+
+
 class Character:
     _cards = []
     _carrying_spheres = False  # is the current player carrying a dragon ball?
+    _card_slot_1 = None
+    _card_slot_1_duration = 0
+    _card_slot_2 = None
+    _card_slot_2_duration = 0
 
     def __init__(self, name, defense, attack, hp, energy, basic_aoe, pos_x, pos_y):
         self._name = name
@@ -108,7 +115,7 @@ class Character:
     def get_cards(self):
         return self._cards
 
-    def get_card_by_id(self, card_id):
+    def get_card_by_id(self, card_id) -> Card:
         for c in self._cards:
             if c._id == card_id:
                 card = c
@@ -118,6 +125,29 @@ class Character:
 
         return card
 
-
     def set_cards(self, card):
         self._cards.append(card)
+
+    def get_card_slot_1(self) -> Card:
+        return self._card_slot_1
+
+    def set_card_slot_1(self, card):
+        self._card_slot_1 = card
+
+    def get_card_slot_2(self) -> Card:
+        return self._card_slot_2
+
+    def set_card_slot_2(self, card):
+        self._card_slot_2 = card
+
+    def get_card_slot_1_duration(self) -> int:
+        return self._card_slot_1_duration
+
+    def set_card_slot_1_duration(self, duration):
+        self._card_slot_1_duration = duration
+
+    def get_card_slot_2_duration(self) -> int:
+        return self._card_slot_2_duration
+
+    def set_card_slot_2_duration(self, duration):
+        self._card_slot_2_duration = duration

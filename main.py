@@ -148,8 +148,6 @@ def play(ct, cp):
 
                     collected_card = search_card_information(card_id)
                     teams[ct][cp].set_cards(collected_card)
-
-                    END_TURN()
                     print(f"{teams[ct][cp].get_name()} collected {Fore.CYAN}{collected_card.get_name()}{Fore.RESET}")
                     END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'T':
@@ -202,6 +200,16 @@ def play(ct, cp):
                             curr_board[i][j].reduce_hp(damage)
 
                 END_TURN()
+
+            if choice == 3:
+                print("use card")
+                card_id = int(input("Insert the card you want to use:     "))
+                selected_card = teams[ct][cp].get_card_by_id(card_id)
+
+                print(f"Selected card: {selected_card.get_name()}")
+
+
+
             if choice == 4:
                 END_TURN()
 
