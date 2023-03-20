@@ -1,4 +1,6 @@
 import random
+
+from set.board import gm
 from set.cards import cards
 from utils.logprinter import print_message
 
@@ -74,9 +76,14 @@ def MOVE():
     x = -1
     y = -1
 
-    while x < 0 or x > 15 or y < 0 or y > 15:
-        x = int(input("Enter the row:   "))
-        y = int(input("Enter the column:    "))
+    while x < 0 or x > (gm.size - 1) or y < 0 or y > (gm.size - 1):
+
+        try:
+            x = int(input("Enter the row:   "))
+            y = int(input("Enter the column:    "))
+
+        except:
+            print(f"Error. You can move between 0 and {gm.size - 1}")
 
     return [x, y]
 
