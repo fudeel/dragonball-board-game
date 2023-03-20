@@ -49,7 +49,7 @@ def CHOICE(curr_board, choice, character):
             return "C"
         elif curr_board[character.get_pos_x()][character.get_pos_y()] == 'T':
             return "T"
-        elif curr_board[character.get_pos_x()][character.get_pos_y()] == 'X':
+        elif curr_board[character.get_pos_x()][character.get_pos_y()] == "S":
             return "S"
         else:
             return 0

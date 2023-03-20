@@ -140,21 +140,18 @@ def play(ct, cp):
             choice = int(input(f"What do you want to do?: \n [1] Analyze current cell \n "
                                f"[2] Attack a cell \n [3] Use a card \n [4] Pass"))
 
-            if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == 0:
-                END_TURN()
-
-            if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "T":
-                print(f"There was a trap. {teams[ct][cp]._name} loses 1 HP")
-                teams[ct][cp].reduce_hp(1)
-                print(f"Updated {teams[ct][cp]._name}'s HP: {teams[ct][cp].get_hp()}")
-
-                END_TURN()
-
-            if choice == 1 and CHOICE(curr_board, choice, teams[ct][cp]) == "C":
-                curr_board_without_players[teams[ct][cp].get_pos_x()][
-                    teams[ct][cp].get_pos_y()] = 0  # remove card from board
-                input(f"{teams[ct][cp]._name} picks a card")
-                END_TURN()
+            if choice == 1:
+                if curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'C':
+                    print(f"{teams[ct][cp].get_name()} found a card! Pick the card and insert its value")
+                    input(f"Card's number:  ")
+                    curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = 0
+                elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'T':
+                    print(f"Oh no! It was a trap! {teams[ct][cp].get_name()}'s HP reduced by 1")
+                    teams[ct][cp].reduce_hp(1)
+                elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == "S":
+                    print(f"YES! {teams[ct][cp].get_name()} has found a Dragon Ball sphere!")
+                else:
+                    pass
 
             if choice == 2:
                 xs, ys = ATTACK(teams[ct][cp])
