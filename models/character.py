@@ -110,6 +110,7 @@ class Character:
         return self._attack
 
     def set_attack(self, val):
+        print(val)
         self._attack = val
 
     def get_cards(self):

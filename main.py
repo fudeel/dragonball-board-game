@@ -143,12 +143,12 @@ def play(ct, cp):
                 if curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'C':
                     # player picks a card and enters its number on the system
                     print(f"{teams[ct][cp].get_name()} found a card! Pick the card and insert its value")
-                    card_id = int(input(f"Card's number:  "))
+                    # card_id = int(input(f"Card's number:  "))
                     curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = 0
 
-                    collected_card = search_card_information(card_id)
-                    teams[ct][cp].set_cards(collected_card)
-                    print(f"{teams[ct][cp].get_name()} collected {Fore.CYAN}{collected_card.get_name()}{Fore.RESET}")
+                    # collected_card = search_card_information(card_id)
+                    # teams[ct][cp].set_cards(collected_card)
+                    # print(f"{teams[ct][cp].get_name()} collected {Fore.CYAN}{collected_card.get_name()}{Fore.RESET}")
                     END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'T':
                     # player gets damage from a trap
@@ -201,14 +201,38 @@ def play(ct, cp):
 
                 END_TURN()
 
-            if choice == 3:
-                print("use card")
-                card_id = int(input("Insert the card you want to use:     "))
-                selected_card = teams[ct][cp].get_card_by_id(card_id)
-
-                print(f"Selected card: {selected_card.get_name()}")
-
-
+            #if choice == 3:
+            #    if teams[ct][cp].get_card_slot_1() is None or teams[ct][cp].get_card_slot_2() is None:
+            #        print("use card")
+            #        card_id = int(input("Insert the card you want to use:     "))
+            #        selected_card = teams[ct][cp].get_card_by_id(card_id)
+#
+            #        print(f"Selected card: {selected_card.get_name()}")
+#
+            #        if selected_card.get_target() == "me":
+            #            effect = selected_card.use_card()[0]
+            #            attribute = effect[0]
+            #            qty = effect[1]
+            #            duration = selected_card.get_duration()
+#
+            #            print(attribute)
+            #            print(qty)
+#
+            #            if attribute == 'attack':
+            #                current_attack = teams[ct][cp].get_attack()
+            #                tot = current_attack + qty
+            #                print(tot)
+            #                teams[ct][cp].set_attack(tot)
+#
+            #            if teams[ct][cp].get_card_slot_1() is None:
+            #                teams[ct][cp].set_card_slot_1(selected_card)
+            #                teams[ct][cp].set_card_slot_1_duration(duration)
+            #            else:
+            #                teams[ct][cp].set_card_slot_2(selected_card)
+            #                teams[ct][cp].set_card_slot_2_duration(duration)
+            #        print("card used successfully")
+            #        print_character(teams[ct][cp])
+            #    END_TURN()
 
             if choice == 4:
                 END_TURN()
