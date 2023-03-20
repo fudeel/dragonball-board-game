@@ -1,6 +1,17 @@
 import random
-
+from set.cards import cards
 from utils.logprinter import print_message
+
+
+def search_card_information(card_id):
+    for c in cards:
+        if c._id == card_id:
+            card = c
+            break
+    else:
+        card = None
+
+    return card
 
 
 def analyze_current_cell(curr_board, x, y):

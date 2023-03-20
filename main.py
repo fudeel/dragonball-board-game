@@ -3,7 +3,7 @@ import random
 
 from models.character import Character
 from set.board import generate_game_board, gm
-from utils.engine import START, END_TURN, MOVE, ATTACK, has_hp
+from utils.engine import START, END_TURN, MOVE, ATTACK, has_hp, search_card_information
 from utils.game import teams
 from utils.logprinter import print_message, print_character
 
@@ -140,8 +140,14 @@ def play(ct, cp):
             if choice == 1:
                 if curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'C':
                     print(f"{teams[ct][cp].get_name()} found a card! Pick the card and insert its value")
-                    input(f"Card's number:  ")
+                    card_id = int(input(f"Card's number:  "))
                     curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] = 0
+
+                    collected_card = search_card_information(card_id)
+                    teams[ct][cp].set_cards(collected_card)
+
+                    END_TURN()
+                    print(f"{teams[ct][cp].get_name()} collected {collected_card.get_name()}")
                     END_TURN()
                 elif curr_board_without_players[teams[ct][cp].get_pos_x()][teams[ct][cp].get_pos_y()] == 'T':
                     print(f"Oh no! It was a trap! {teams[ct][cp].get_name()}'s HP reduced by 1")

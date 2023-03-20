@@ -5,13 +5,9 @@ from set.cards import generate_cards
 from utils.game import game_state, save_game
 
 # game-modes that generate different map [1] 16x16 / 7 spheres / 20 traps / 20 cards
-
-
 cards = generate_cards()
 
-print(f"CARDS {cards}")
-
-gm = GameMode(id=1, size=16, s=0, c=(len(cards)), t=0)
+gm = GameMode(id=1, size=16, s=0, c=250, t=0)
 
 
 def ensure_numbers_of_elements(gb):

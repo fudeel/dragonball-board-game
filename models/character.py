@@ -108,5 +108,16 @@ class Character:
     def get_cards(self):
         return self._cards
 
+    def get_card_by_id(self, card_id):
+        for c in self._cards:
+            if c._id == card_id:
+                card = c
+                break
+        else:
+            card = None
+
+        return card
+
+
     def set_cards(self, card):
         self._cards.append(card)

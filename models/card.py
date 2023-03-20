@@ -1,8 +1,9 @@
 class Card:
-
     _duration = 0
-    def __init__(self, id, desc, tar, eff_code):
+
+    def __init__(self, id, name, desc, tar, eff_code):
         self._id = id  # card id
+        self._name = name
         self._description = desc  # card description
         self._target = tar  # card effect's target me | other | cells | all
         self._effect_code = eff_code  # card effect code
@@ -12,6 +13,12 @@ class Card:
 
     def set_id(self, id):
         self._id = id
+
+    def get_name(self):
+        return self._name
+
+    def set_name(self, name):
+        self._name = name
 
     def get_description(self):
         return self._description
