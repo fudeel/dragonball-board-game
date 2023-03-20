@@ -13,6 +13,11 @@ gm = GameMode(id=1, size=16, s=7, c=5, t=5)
 
 
 def ensure_numbers_of_elements(gb):
+    """
+    This function is used to count elements on board, to esnure if the initialization puts the correct elements on it.
+    :param gb:
+    :return:
+    """
     char_count = {'C': 0, 'T': 0, 'X': 0}
 
     for row in gb:
