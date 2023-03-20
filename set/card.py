@@ -3,7 +3,7 @@ class Card:
     def __init__(self, id, desc, tar):
         self._id = id  # card id
         self._description = desc  # card description
-        self._target = tar  # card effect's target me | other | all
+        self._target = tar  # card effect's target me | other | cells | all
 
     def get_id(self):
         return self._id
