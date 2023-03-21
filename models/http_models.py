@@ -26,6 +26,7 @@ class Game(BaseModel):
 
 
 class Character(BaseModel):
+    character_id: str
     name: str
     hp: int
     level: int = 0
@@ -35,3 +36,10 @@ class Character(BaseModel):
     pos_x: int = 0
     pos_y: int = 0
     owner: str = ""
+
+
+class Player(BaseModel):
+    player_id: str = generate_secret()
+    name: str
+    game_id: str
+    character_id: str

@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from pandas._libs import json
 from pymongo import MongoClient
 from bson.json_util import dumps
-from models.http_models import Game, Character
+from models.http_models import Game, Character, Player
 from set.board import generate_game_board
 from bson.objectid import ObjectId
 import random
@@ -87,3 +87,17 @@ async def get_character(character_id: str):
 
     # Return the result as a dictionary
     return result
+
+
+@app.post("/players")
+async def create_player(create_player: Player):
+    """
+    Crates a game on DB under the "games" collection using parameters from Client and generating hashed board
+    :param create_player:
+    :return:
+    """
+    player_dict = dict(create_player)
+
+    result = db["players"].insert_one(player_dict)
+
+    return {"id": str(result.inserted_id)}
