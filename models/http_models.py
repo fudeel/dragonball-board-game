@@ -29,7 +29,6 @@ class Character(BaseModel):
     name: str
     hp: int
     level: int = 0
-    character_id = str
     attack: int
     defense: int
     aoe: int

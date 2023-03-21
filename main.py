@@ -56,11 +56,21 @@ async def get_game(game_id: str):
     return result
 
 
+@app.get("/characters")
+async def get_characters():
+    """
+    search for games in DB
+    :return: games
+    """
+    games = db["characters"].find({})
+    return dumps(games)
+
+
 @app.post("/characters")
 async def create_character(create_character: Character):
     """
     Crates a game on DB under the "games" collection using parameters from Client and generating hashed board
-    :param create_game:
+    :param create_character:
     :return:
     """
     character_dict = dict(create_character)
@@ -68,3 +78,12 @@ async def create_character(create_character: Character):
     result = db["characters"].insert_one(character_dict)
 
     return {"id": str(result.inserted_id)}
+
+
+@app.get("/games/{character_id}")
+async def get_character(character_id: str):
+    # Query the document with the given ID from the games collection
+    result = db["characters"].find_one({'game_id': character_id}, {'_id': 0})
+
+    # Return the result as a dictionary
+    return result
