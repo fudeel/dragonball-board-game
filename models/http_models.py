@@ -12,7 +12,7 @@ def generate_secret():
     return random_string
 
 
-class CreateGame(BaseModel):
+class Game(BaseModel):
     name: str
     game_id = generate_secret()
     is_started: bool = False
@@ -23,3 +23,16 @@ class CreateGame(BaseModel):
     gm: str = "standard"
     game_round: int = 0
     board = ""
+
+
+class Character(BaseModel):
+    name: str
+    hp: int
+    level: int = 0
+    character_id = str
+    attack: int
+    defense: int
+    aoe: int
+    pos_x: int = 0
+    pos_y: int = 0
+    owner: str = ""
