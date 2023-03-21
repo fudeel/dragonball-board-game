@@ -15,6 +15,7 @@ def generate_secret():
 class Game(BaseModel):
     name: str
     game_id = generate_secret()
+    game_password: str
     is_started: bool = False
     num_of_players: int
     current_team: int = 0
@@ -23,6 +24,7 @@ class Game(BaseModel):
     gm: str = "standard"
     game_round: int = 0
     board = ""
+
 
 
 class Character(BaseModel):

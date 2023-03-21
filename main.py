@@ -101,3 +101,5 @@ async def create_player(create_player: Player):
     result = db["players"].insert_one(player_dict)
 
     return {"id": str(result.inserted_id)}
+
+
