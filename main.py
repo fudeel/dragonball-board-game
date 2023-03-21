@@ -1,8 +1,13 @@
+import hashlib
 from typing import Union
 from fastapi import FastAPI
+from pandas._libs import json
 from pymongo import MongoClient
 from bson.json_util import dumps
 from models.http_models import CreateGame
+from set.board import generate_game_board
+from bson.objectid import ObjectId
+import random
 
 app = FastAPI()
 
@@ -27,6 +32,25 @@ async def get_games():
 
 @app.post("/games")
 async def create_game(create_game: CreateGame):
+    """
+    Crates a game on DB under the "games" collection using parameters from Client and generating hashed board
+    :param create_game:
+    :return:
+    """
     game_dict = dict(create_game)
+    board_json = json.dumps(generate_game_board())
+    board_hash = hashlib.sha256(board_json.encode('utf-8')).hexdigest()
+
+    game_dict['board'] = board_hash
     result = db["games"].insert_one(game_dict)
+
     return {"id": str(result.inserted_id)}
+
+
+@app.get("/games/{game_id}")
+async def get_game(game_id: str):
+    # Query the document with the given ID from the games collection
+    result = db["games"].find_one({'game_id': game_id}, {'_id': 0})
+
+    # Return the result as a dictionary
+    return result
