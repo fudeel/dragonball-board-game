@@ -9,3 +9,4 @@ class CreateGame(BaseModel):
     current_player: int = 0
     players: list = []
     gm: str = 'standard'
+    game_round: int = 0
